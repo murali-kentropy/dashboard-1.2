@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="js/sld.js"></script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+.btn2 {
+  /* border: none;
+  outline: none;
+  padding: 10px 16px; */
+ /*  background-color: #f1f1f1; */
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Style the active class, and buttons on mouse-over */
+.active, .btn:hover {
+  background-color: #666;
+  color: white;
+}
+</style>
+
+<style>
+#topheader .navbar-nav li > a {
+	text-transform: capitalize;
+	color: #333;
+	transition: background-color .2s, color .2s;
+	
+	&:hover,
+	&:focus {
+		background-color: #333;
+		color: #fff;
+	}
+}
+
+#topheader .navbar-nav li.active > a {
+	background-color: #333;
+	color: #fff;
+}
+
+.tooltiptext {
+
+  width: 14px;
+
+
+  text-align: center;
+  
+  padding: 05px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+#ci{
+padding-left:40px;
+}
+</style>
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div id="myDiv" class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      
+      
+      
+      <!-- <a class="navbar-brand" href="#">Logo</a> -->
+      
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a id="va_monitoring_tab" class="btn  btn-default navbar-btn btn2 " href="survey_monitoring_dashboard.jsp" >VA</a></li>
+        <li><a id="todays_progress_tab" class="btn btn-default navbar-btn btn2 " href="survey_monitoring_dashboard.jsp?dashboard=todays_progress" >Today's Progress</a></li>
+        <li><a id="enumeration_tab" class="btn btn-default navbar-btn btn2 " href="survey_monitoring_dashboard.jsp?dashboard=enumeration" >Enumeration</a></li>
+        <!-- <li><a class="btn btn-default navbar-btn"	 href="ESL.jsp">ESL</a></li> -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+     
+       <!--  <li><a href="#" data-toggle="tooltip" title="Comsa Account"  data-placement="bottom"><span  class="glyphicon glyphicon-user"></span> </a></li> -->
+        
+        <li><a  class="btn  btn-default navbar-btn " href="logout"> Logout</a></li>
+       <!--  <li><input type="text"  onkeyup="" placeholder="Search" name="srch-term" id="srch"></li>
+        <li>    <button class="btn btn-default  " onclick="searchFunction()"><span class="glyphicon glyphicon-search"></span></button></li> 
+             -->
+              
+            
+        
+        </ul>
+       
+  </div>
+  
+  </div>
+  </nav>
+  <b id="ci">Color-Intensity:</b><select id="colInt" onchange="myColor()">
+		<option value="0.1">0.1</option>
+        <option value="0.2">0.2</option>
+        <option value="0.3">0.3</option>
+        <option value="0.4">0.4</option>
+        <option value="0.5" selected=selected>0.5</option>
+        <option value="0.6">0.6</option>
+        <option value="0.7">0.7</option>
+        <option value="0.8">0.8</option>
+        <option value="0.9">0.9</option>
+        <option value="1">1</option>
+        </select>
+
+   <br>
+   <br>
+   
+<div id="layout"></div>
+<footer class="container-fluid text-center">
+  <p style=color:grey>comsa study monitoring dashboards</p>  
+  
+</footer>
+
+</body>
+</html>

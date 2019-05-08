@@ -1,0 +1,25 @@
+{
+
+charts:[
+        {
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar","pie"],
+        name:"Household",title:"Total Household",
+        query:"select count(*) totalHouseHolds,surveyor from household where  DATE(timelog) = DATE(NOW()) group by surveyor"}
+      ,
+      
+         {
+         sort:{type:"int",order:"desc",field:"value"},
+         types:["bar","pie"],
+         name:"Member",title:"Total Member",
+         query:"select count(*) totalMembers,surveyor from member where  DATE(timelog) = DATE(NOW()) group by surveyor"}
+      	 ,
+      	 
+      	 {
+      	 
+      	 types:["bar","pie"],
+      	 name:"Va_progress",title:"VA SL Progress",
+         query:"select count(*) va_process from feedback where DATE(timelog) = DATE(NOW())"} 
+        
+        ]
+}

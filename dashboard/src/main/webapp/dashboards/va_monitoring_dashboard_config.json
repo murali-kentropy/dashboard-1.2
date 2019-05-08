@@ -1,0 +1,61 @@
+{
+   "charts":[
+     
+       {
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar"],
+         name: "Avg_death_collected_per_day",title:"Avg deaths per day (Higher the better)",
+         query:"select  floor(count(*) /(max(date(timelog)) -min(date(timelog)) +1)) avg_death_per_day ,surveyor from death group by surveyor"
+       }
+     ,
+        {
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar"],
+        name: "Avg_narrative_length",title:"Avg Narrative Length in chars (Higher the better)",
+        query:"select  FLOOR(avg(length(summary))) avg_narrative_length,surveyor from narrative a left join death b on a.deathId=b.deathId where surveyor is not null group by surveyor"}
+      ,
+      
+         {
+         sort:{type:"int",order:"desc",field:"value"},
+         types:["pie","bar"],
+         name:"Complete_interviews",title:"Complete Interviews (Higher the better)",
+         query:"select count(*) complete_interviews,surveyor from feedback group by surveyor"}
+      ,
+      
+        {
+        sort:{type:"int",order:"asc",field:"value"},
+        types:["bar","pie"],
+        name: "Invalid_mobile_nos",title:"Invalid Mobile numbers",
+        query:"select count(*) invalid_mobile_number,surveyor from household where contactNo='99999999' or secContactNo='99999999' group by surveyor"}
+      ,
+      
+         {         
+         sort:{type:"int",order:"desc",field:"value"},
+         types:["bar","pie","line"],
+         name:"Total_deaths",title:"Total Deaths (Higher the better)",
+         query:"select count(*) total_deaths,surveyor from death group by surveyor order by count(*) "}
+      ,
+      
+       
+      {
+      sort:{type:"int",order:"asc",field:"value"},
+      types:["bar"],
+       name:"Va_avg_time",title:"Avg Time(in mins) VA",
+       query:"select FLOOR(avg(timestampdiff(MINUTE,b.starttime,b.endtime))) avg_time_in_min,surveyor from  deathDetail b left join death a on b.deathId=a.deathId group by a.surveyor"}
+       , 
+        {
+         sort:{type:"int",order:"asc",field:"value"},
+        types:["bar","pie"],
+        name:"Va_interviews_with_no_symptom",title:"VA Interviews with No Symptoms(Lower the better)",
+        query:"select sum(if(instr(summary,'\\\"')=0,1,0)) va_interviews_with_no_symptom,surveyor from positiveSymptoms a left join death b on a.deathId=b.deathId where surveyor is not null   group by surveyor"}
+      ,
+       {
+        sort:{type:"int",order:"asc",field:"value"},
+       types:["bar","pie"],
+       name:"Va_progress",title:"VA SL Progress",
+         query:"select count(*) va_process from feedback"}
+      
+        
+      
+   ]
+}

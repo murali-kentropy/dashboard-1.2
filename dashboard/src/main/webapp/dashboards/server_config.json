@@ -1,0 +1,47 @@
+
+{
+current_environment:"prod",
+environments:{
+prod:{
+  va: {
+    uname:"rajeevkamadod";
+    pass:"RajeevK#2019";
+    url:"jdbc:mysql://68.169.59.208/cod_save";
+  },
+  
+   surveyor: {
+    uname:"rajeevkamadod";
+    pass:"RajeevK#2019";
+    url:"jdbc:mysql://68.169.59.208/cod_save";
+  }
+  },
+  dev:
+  {
+  va: {
+    uname:"root";
+    pass:"root";
+    url:"jdbc:mysql://localhost/cod_save";
+  },
+  surveyor: {
+    uname:"root";
+    pass:"root";
+    url:"jdbc:mysql://localhost/sr_database";
+  }
+  
+  },
+  test:
+  {
+  va: {
+    uname:"root";
+    pass:"cghrjha";
+    url:"jdbc:mysql://www.cghr.org/cod_save";
+  },
+  surveyor: {
+    uname:"root";
+    pass:"cghrjha";
+    url:"jdbc:mysql://www.cghr.org/cod_save";
+  }
+  
+  }
+  }
+}

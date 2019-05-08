@@ -1,0 +1,47 @@
+{
+
+charts:[
+             
+       {
+       sort:{type:"int",order:"desc",field:"value"},
+       types:["bar","line"],
+       name:"Avg_households_per_day",title:"Avg Households per day (higher the better)",
+       query:"select floor(count(*) /(max(date(timelog)) -min(date(timelog)) +1)) avg_housreholds_per_day,surveyor from household group by surveyor"}
+     ,
+      	  
+      	 {
+      	 sort:{type:"int",order:"desc",field:"value"},
+      	 types:["bar","pie"],
+      	 name:"Houses",title:"Total Houses",
+      	 query:"select count(*) totalHouses ,surveyor from house group by surveyor"}
+      ,
+      
+        {
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar","pie"],
+        name:"Household",title:"Total Household",
+        query:"select count(*) totalHouseHolds,surveyor from household group by surveyor"}
+      ,
+      
+         {
+         sort:{type:"int",order:"desc",field:"value"},
+         types:["bar","pie"],
+         name:"Member",title:"Total Member",
+         query:"select count(*) totalMembers,surveyor from member group by surveyor"}
+      	  
+        ,
+        {
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar","pie"],
+        name:"Pregnancy",title:"Total Pregnancy",
+         query:"select count(*) totalpregnancy,surveyor from pregnancy p left join death d on p.deathId=d.deathId    group by surveyor"}
+      	  ,
+      	  {
+      	  sort:{type:"int",order:"desc",field:"value"},
+      	  types:["bar","pie"],
+      	  name:"Birth",title:"Total Births",
+         query:"select count(*) totalbirths,surveyor from birthDetails bt left join death dt on bt.deathId=dt.deathId    group by surveyor"}
+      	  
+        	]
+        	
+        	}
