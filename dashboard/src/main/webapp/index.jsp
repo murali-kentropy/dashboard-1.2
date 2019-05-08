@@ -22,6 +22,21 @@
 <br>
 <br>
 <br>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+
+  <div class="container-fluid">
+    <div class="navbar-header">
+
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"><span class="label label-danger">COMSA Study Dashboards</span></a>
+    </div>
+</div>
+</nav>
 <shiro:user>
 
 <h4>Welcome 
