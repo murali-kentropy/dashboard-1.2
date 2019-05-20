@@ -4,7 +4,7 @@ charts:[
              
        {
        sort:{type:"int",order:"desc",field:"value"},
-       types:["bar","line"],
+       types:["bar"],
        name:"Avg_households_per_day",title:"Avg Households per day (higher the better)",
        query:"select floor(count(*) /(max(date(timelog)) -min(date(timelog)) +1)) avg_housreholds_per_day,surveyor from household group by surveyor"}
      ,

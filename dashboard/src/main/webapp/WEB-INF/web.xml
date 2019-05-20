@@ -10,7 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <listener>
+ <!--  <listener>
     <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
 </listener>
 
@@ -18,14 +18,14 @@
 <filter>
     <filter-name>ShiroFilter</filter-name>
     <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
-</filter>
+</filter> -->
 
-<filter-mapping>
-    <filter-name>ShiroFilter</filter-name>
+<!-- <filter-mapping>
+    <filter-name>ShiroFilter</fer-name>www.
     <url-pattern>/*</url-pattern>
     <dispatcher>REQUEST</dispatcher>
     <dispatcher>FORWARD</dispatcher>
     <dispatcher>INCLUDE</dispatcher>
     <dispatcher>ERROR</dispatcher>
-</filter-mapping>
+</filter-mapping> -->
 </web-app>

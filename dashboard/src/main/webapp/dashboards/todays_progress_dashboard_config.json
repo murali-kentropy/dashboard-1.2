@@ -17,9 +17,18 @@ charts:[
       	 
       	 {
       	 
-      	 types:["bar","pie"],
+      	 types:["bar"],
       	 name:"Va_progress",title:"VA SL Progress",
-         query:"select count(*) va_process from feedback where DATE(timelog) = DATE(NOW())"} 
+         query:"select count(*) va_process from feedback where DATE(timelog) = DATE(NOW())"}
+         , 
+         
+         {
+         
+         sort:{type:"int",order:"asc",field:"value"},
+        types:["bar","pie"],
+        name:"Va_interviews_with_no_symptom",title:"VA Interviews with No Symptoms(Lower the better)",
+        query:"select sum(if(instr(summary,'\\\"')=0,1,0)) va_interviews_with_no_symptom,surveyor from positiveSymptoms a left join death b on a.deathId=b.deathId where surveyor is not null and DATE(a.timelog) = DATE(NOW())  group by surveyor"}
+      ,
         
         ]
 }

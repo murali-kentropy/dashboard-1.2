@@ -17,7 +17,7 @@
       
          {
          sort:{type:"int",order:"desc",field:"value"},
-         types:["pie","bar"],
+         types:["bar","pie"],
          name:"Complete_interviews",title:"Complete Interviews (Higher the better)",
          query:"select count(*) complete_interviews,surveyor from feedback group by surveyor"}
       ,
@@ -31,7 +31,7 @@
       
          {         
          sort:{type:"int",order:"desc",field:"value"},
-         types:["bar","pie","line"],
+         types:["bar","pie"],
          name:"Total_deaths",title:"Total Deaths (Higher the better)",
          query:"select count(*) total_deaths,surveyor from death group by surveyor order by count(*) "}
       ,
@@ -51,7 +51,7 @@
       ,
        {
         sort:{type:"int",order:"asc",field:"value"},
-       types:["bar","pie"],
+       types:["bar"],
        name:"Va_progress",title:"VA SL Progress",
          query:"select count(*) va_process from feedback"}
       

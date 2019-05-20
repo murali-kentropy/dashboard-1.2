@@ -28,8 +28,7 @@
 <body>
 
 
-
-<shiro:guest>
+<%-- <shiro:guest> --%>
 <!--     <p>Here are a few sample accounts to play with in the default text-based Realm (used for this
         demo and test installs only). Do you remember the movie these names came from? ;)</p>
  -->
@@ -88,7 +87,7 @@
         </tbody>
     </table> -->
     <br/><br/>
-</shiro:guest>
+<%-- </shiro:guest> --%>
 <nav class="navbar navbar-default navbar-fixed-top">
 
   <div class="container-fluid">
@@ -109,6 +108,20 @@
 	<br />
 <form  class="form-horizontal" name="loginform" action="" method="post">
  <div class="form-group">
+ <div>
+ <span font-color=red>
+ <%
+if (request.getAttribute("shiroLoginFailure")  != null)
+{
+
+//Username or password incorrect  
+//request.getAttribute("shiroLoginFailure");
+out.println("Username or password incorrect "+request.getAttribute("shiroLoginFailure") );
+// </c:if>
+}
+ %>
+ </span>
+ </div>
 		<label class="control-label col-sm-offset-3 col-sm-2" style="color:blue">Username:</label>
 		<div class="col-sm-3"> 
 		  <input type="text" class="form-control" id="username" name="username" required>

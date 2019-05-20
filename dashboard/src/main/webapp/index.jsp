@@ -13,42 +13,41 @@
 </head>
 <body>
 <div class="container text-center">
-<br>
-<br>
-<br>
-<br>
+
+
+<nav class="navbar navbar-default navbar-top">
+
+
+<table width=100%>
+   <tr>
+   
+     <td align=left> <a  href="#"><span class=" btn  btn-danger navbar-btn">COMSA Study Dashboards</span></a></td>
+    
+      
+        
+   
+   
+   <td align="right">
+      Hello <a  class="btn  btn-default navbar-btn " href="logout"> Logout</a>
+
+        
+              
+            
+        
+        </td>
+       </tr></table>
+   
+
+</nav> 
 <br><br>
-<br>
-<br>
-<br>
-<br>
+<h3>Welcome to the COMSA Study Dashboards site.</h3><br><br>
+<h4>
 
-<nav class="navbar navbar-default navbar-fixed-top">
-
-  <div class="container-fluid">
-    <div class="navbar-header">
-
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#"><span class="label label-danger">COMSA Study Dashboards</span></a>
-    </div>
-</div>
-</nav>
-<shiro:user>
-
-<h4>Welcome 
-<shiro:principal>
-</shiro:principal>
-</shiro:user>
+Select one of the dashboards listed below to proceed :
 </h4>
 <br><br>
-<a class="btn btn-success" href="survey_monitoring_dashboard.jsp">COMSA monitoring dashboards</a>
+<a class="btn btn-default " href="survey_monitoring_dashboard.jsp">Monitoring dashboards</a>
 </div>
-<%
-System.out.println("usernanemc-"+request.getParameter("username"));
-%>
+
 </body>
 </html>

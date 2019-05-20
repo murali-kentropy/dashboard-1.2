@@ -450,7 +450,7 @@ function getPanelButtons(idx)
 function setLayout()
 {
 	var size=data.length;
-	var cols=2;
+	var cols=1;
 	var tdsize=parseInt(100/cols);
 	//var tdsize=100;
 	var idx=0;
@@ -476,7 +476,7 @@ str+="<tr>"
 
 }
 
-str+="<td width="+tdsize+"%>"
+str+="<td  valign='top' width="+tdsize+"%>"
 
 	str+="<div class='panel panel-info'>"+getPanelButtons(i)+"</div>"
 str+="</td>";	

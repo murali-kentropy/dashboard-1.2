@@ -25,7 +25,7 @@ prod:{
   surveyor: {
     uname:"root";
     pass:"root";
-    url:"jdbc:mysql://localhost/sr_database";
+    url:"jdbc:mysql://localhost/cod_save";
   }
   
   },

@@ -89,15 +89,30 @@ var config=<%=joConfig.getJSONArray("charts")%>;
 
 </script>
 </head>
+<%@ include file="include.jsp" %>
+<body onload="displaycharts(1)">
+<div class="container">
+ <nav class="navbar navbar-default navbar-top ">
 
-<body onload="displaycharts(0.5)">
-<div class="jumbotron ">
-  <div class="container text-center">
-    <!-- <h1>COMSA STUDY MONITORING DASHBOARD</h1> -->
-    <h3>COMSA STUDY MONITORING DASHBOARDS</h3>      
+
+<table width=100%>
+   <tr>
+   
+     <td align=left> <a  href="index.jsp"><span class=" btn  btn-danger navbar-btn">COMSA Study Dashboards</span></a></td>
     
-  </div>
+      </tr></table>
+   
+
+</nav> 
+<br><br>
+<div class="jumbotron text-center">
+
+    <!-- <h1>COMSA STUDY MONITORING DASHBOARD</h1> -->
+    <h3>MONITORING DASHBOARDS</h3>      
+    
+
 </div>
+
 
 
 <%@ include file="navbar.html" %>
@@ -108,7 +123,7 @@ var config=<%=joConfig.getJSONArray("charts")%>;
 function setTab(dashboard)
 {
 	console.log("dashboard "+dashboard +document.getElementById(dashboard+"_tab").className)
-	document.getElementById(dashboard+"_tab").className="btn  btn-default navbar-btn btn2 active";
+	document.getElementById(dashboard+"_tab").className="btn  btn-default navbar-btn b1tn2 active";
 }
 	
 	
@@ -116,7 +131,7 @@ setTab("<%=dashboard%>");
 	
 </script>
 
- 
 
+</div>
 </body>
 </html>
