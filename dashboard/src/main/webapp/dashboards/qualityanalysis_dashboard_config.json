@@ -1,0 +1,39 @@
+{
+
+charts:[
+        {
+        
+        types:["table"],
+        name:"Pregnancy enumerated",title:"Pregnancy details enumerated",
+        columns:["Surveyor name","Date","What is the duration of her pregnancy(in completed months)","what is the expected month of outcome of the pregnancy","what is the expected year of outcome of pregnancy"	],
+        query:"select count(*) totalHouses  from house where areaId<700 "
+        }
+      ,
+      
+         {
+        
+         types:["table"],
+         name:"Head of household",title:"Head of household details",
+         colHeading:["Death","Enumeration","VA"], 
+         columns:["Death ID","Enum Surveyor Name","Enum Date","Name of the head of the HH","Age of head of HH","Sex of the head of the HH","VA Surveyor name","VA date","Name of the head of the HH","Age of the head of the HH","Sex of the head of the HH"],
+         query:"select count(*) totalDeaths  from death where areaId<700"
+         }
+      ,
+      {
+        
+         types:["table"],
+         name:"Death Details",title:"Death details",
+         colHeading:["Death","Enumeration","VA"], 
+         columns:["Death ID","Enum Surveyor Name","Enum Date","Name of the head of the HH","Age of head of HH","Sex of the head of the HH","VA Surveyor name","VA date","Name of the head of the HH","Age of the head of the HH","Sex of the head of the HH"],
+         query:"select count(*) totalDeaths  from death where areaId<700"
+         }
+         ,
+      {
+       sort:{type:"int",order:"desc",field:"value"},
+       types:["bar"],
+       name:"Avg_time_spent_by_surveyor",title:"Avg Time Spent by surveyors in field",
+       query:"select floor(count(*) /(max(date(timelog)) -min(date(timelog)) +1)) avg_housreholds_per_day,surveyor from household where areaId<700 group by surveyor"
+       }
+     
+        ]
+}

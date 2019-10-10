@@ -81,9 +81,19 @@ $(document).ready(function(){
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a id="va_monitoring_tab" class="btn  btn-default navbar-btn btn2 " href="survey_monitoring_dashboard.jsp" >VA</a></li>
-        <li><a id="todays_progress_tab" class="btn btn-default navbar-btn btn2 " href="survey_monitoring_dashboard.jsp?dashboard=todays_progress" >Today's Progress</a></li>
-        <li><a id="enumeration_tab" class="btn btn-default navbar-btn btn2 " href="survey_monitoring_dashboard.jsp?dashboard=enumeration" >Enumeration</a></li>
+       <li><a id="comsa_tab"  href="survey_monitoring_dashboard.jsp" >COMSA STUDY</a><span  class="glyphicon glyphicon-user"></span></li>
+       <li><a id="admin_tab" class="btn" href="survey_monitoring_dashboard.jsp?dashboard=admin" >ADMIN</a></li>
+       <li><a id="Support_tab" class="btn" href="" >SUPPORT</a></li>
+        <li><a id="surveyor_data_tab" class="btn " href="survey_monitoring_dashboard.jsp" >SURVEYOR DATA</a></li>
+        
+        <li><a id="enumeration_tab" class="btn " href="survey_monitoring_dashboard.jsp?dashboard=enumeration" >ENUMERATION</a></li>
+        <li><a id="va_monitoring_tab" class="btn" href="survey_monitoring_dashboard.jsp" >VA</a></li>
+        <li><a id="resampling_tab" class="btn" href="survey_monitoring_dashboard.jsp?dashboard=todays_progress" >RESAMPLING</a></li>
+        <li><a id="todays_progress_tab" class="btn" href="survey_monitoring_dashboard.jsp?dashboard=todays_progress" >PROGRESS</a></li>
+       <li><a id="reports_tab" class="btn " href="survey_monitoring_dashboard.jsp?dashboard=reports" >REPORTS</a></li>
+       <li><a id="qa_tab" class="btn " href="survey_monitoring_dashboard.jsp" >QUALITY ANALYSIS</a></li>
+       <li><a id="cft_tab" class="btn  " href="survey_monitoring_dashboard.jsp" >CONSENT FORM TRACKING</a></li>
+       <li><a id="logistic_tab" class="btn" href="survey_monitoring_dashboard.jsp" >LOGISTIC MANAGEMENT</a></li>
         <!-- <li><a class="btn btn-default navbar-btn"	 href="ESL.jsp">ESL</a></li> -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -113,9 +123,13 @@ $(document).ready(function(){
         <option value="0.7">0.7</option>
         <option value="0.8">0.8</option>
         <option value="0.9">0.9</option>
-        <option value="1" selected=selected>1</option>
+        <option value="1" selected=selected >1</option>
         </select>
-
+ <b id="col">No of columns:</b><select id="colNum" onchange="myCol()">
+		<option value="1">1</option>
+        <option value="2" selected=selected>2</option>
+      
+        </select>
    <br>
    <br>
    

@@ -1,0 +1,37 @@
+{
+
+charts:[
+         {
+          types:["table"],
+           pageSize:10,
+           filters:["areas"],
+          name:"Pregnancy enumerated",title:"Pregnancy details enumerated",
+          columns:["Surveyor name","Date","duration of pregnancy(in completed months)","month of outcome of the pregnancy","year of outcome of pregnancy"],
+          columns2:["surveyor","timelog","pregnancyDuration","expectedMonth","expectedYear"],
+          queryStruct:{
+          from:" member m ",
+          fields:"surveyor,timelog,pregnancyDuration,expectedMonth,IFNULL(expectedYear,'-') expectedYear",
+          where :["areaId<777","areaId=$area_0","currentPregStatus='Pregnant'"],
+          order1:"surveyor",
+        }
+        }
+        ,
+        
+        {
+        
+         types:["table"],
+         filters:["areas"],
+         name:"Head of household",title:"Head of household details",
+         pageSize:50,
+         colHeadings:["HouseHoldID","Enumeration","VA"],
+         columns:["HouseHoldId ID","Enum Surveyor Name","Enum Date","Name of the head of the HH","Age of head of HH","Sex of the head of the HH","VA Surveyor name","VA date","Name of the head of the HH","Age of the head of the HH","Sex of the head of the HH"],
+         columns2:["householdId","surveyor","timelog","memberName","age","sex","assignedto","starttime","headAge","headSex","headName"],
+         queryStruct:{
+         from:"death a left join member m on a.householdId=m.householdId left join deathDetail dd on a.deathId= dd.deathId  left join verification v on a.householdId=v.householdId",
+         fields:"m.householdId,a.surveyor ,m.timelog, m.memberName,concat(m.age_value,' ',m.age_unit) age, m.sex,a.assignedto, IFNULL(dd.starttime,'-') starttime,v.headAge, v.headSex, v.headName",
+         where :["m.areaId<777","m.areaId=$area_1","m.relationToHead='Head'","assignedto is not null"],
+         order1:"m.householdId",
+        }
+        }
+        ]
+ }

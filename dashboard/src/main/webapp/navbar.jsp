@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="js/sld_new.js"></script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+.btn2 {
+  /* border: none;
+  outline: none;
+  padding: 10px 16px; */
+ /*  background-color: #f1f1f1; */
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Style the active class, and buttons on mouse-over */
+.active, .btn:hover {
+  /*  background-color: blue; 
+  color: white; */
+}
+</style>
+
+<style>
+#topheader .navbar-nav li > a {
+	text-transform: capitalize;
+	color: #333;
+	transition: background-color .2s, color .2s;
+	
+	&:hover,
+	&:focus {
+		background-color: #333;
+		color: #fff;
+	}
+}
+
+#topheader .navbar-nav li.active > a {
+	background-color: #333;
+	color: #fff;
+}
+
+.tooltiptext {
+
+  width: 14px;
+
+
+  text-align: center;
+  
+  padding: 05px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+#ci{
+padding-left:40px;
+}
+</style>
+<!-- <script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script> -->
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div id="myDiv" class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      
+      
+      
+      <script>
+      
+     
+          
+      function generateTabs()
+      {
+    	  var str="<ul class=\"nav navbar-nav\">";
+    	  
+    	  for(var i=0; i<tabs.length;i++)
+      {
+    		  var tab=tabs[i];
+    	  str+="<li><a class=\"btn btn-default navbar-btn\" id='"+tab.name+"_tab'  href='survey_monitoring_dashboard.jsp?dashboard="+tab.name+"&tabs="+tabName+"' >"+tab.title+"</a></span></li>";  
+    	  
+      }
+    	  str+="</ul>";
+    	  myNavbar.innerHTML=str;
+      }
+      </script>
+      
+      
+      <!-- <a class="navbar-brand" href="#">Logo</a> -->
+      
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+       <li><a id="comsa_tab"  href="survey_monitoring_dashboard.jsp" >COMSA STUDY</a><span  class="glyphicon glyphicon-user"></span></li>
+       <li><a id="admin_tab" class="btn" href="survey_monitoring_dashboard.jsp?dashboard=admin" >ADMIN</a></li>
+       <li><a id="Support_tab" class="btn" href="" >SUPPORT</a></li>
+        <li><a id="surveyor_data_tab" class="btn " href="survey_monitoring_dashboard.jsp" >SURVEYOR DATA</a></li>
+        
+        <li><a id="enumeration_tab" class="btn " href="survey_monitoring_dashboard.jsp?dashboard=enumeration" >ENUMERATION</a></li>
+        <li><a id="va_monitoring_tab" class="btn" href="survey_monitoring_dashboard.jspdashboard=va_monitoring" >VA</a></li>
+        <li><a id="resampling_tab" class="btn" href="survey_monitoring_dashboard.jsp?dashboard=todays_progress" >RESAMPLING</a></li>
+        <li><a id="todays_progress_tab" class="btn" href="survey_monitoring_dashboard.jsp?dashboard=todays_progress" >PROGRESS</a></li>
+       <li><a id="reports_tab" class="btn " href="survey_monitoring_dashboard.jsp?dashboard=reports" >REPORTS</a></li>
+       <li><a id="qa_tab" class="btn " href="survey_monitoring_dashboard.jsp" >QUALITY ANALYSIS</a></li>
+       <li><a id="cft_tab" class="btn  " href="survey_monitoring_dashboard.jsp" >CONSENT FORM TRACKING</a></li>
+       <li><a id="logistic_tab" class="btn" href="survey_monitoring_dashboard.jsp" >LOGISTIC MANAGEMENT</a></li>
+        <!-- <li><a class="btn btn-default navbar-btn"	 href="ESL.jsp">ESL</a></li> -->
+      </ul>
+      <script>
+      generateTabs();
+      </script>
+      <ul class="nav navbar-nav navbar-right">
+     
+       <!--  <li><a href="#" data-toggle="tooltip" title="Comsa Account"  data-placement="bottom"><span  class="glyphicon glyphicon-user"></span> </a></li> -->
+        
+        <!-- <li><a  class="btn  btn-default navbar-btn " href="logout"> Logout</a></li> -->
+       <!--  <li><input type="text"  onkeyup="" placeholder="Search" name="srch-term" id="srch"></li>
+        <li>    <button class="btn btn-default  " onclick="searchFunction()"><span class="glyphicon glyphicon-search"></span></button></li> 
+             -->
+              
+            
+        
+        </ul>
+       
+  </div>
+  
+  </div>
+  </nav>
+  <b id="ci">Color-Intensity:</b><select class="btn btn-warning" id="colInt" style="color:black" onchange="myColor()">
+		<option value="0.1">0.1</option>
+        <option value="0.2">0.2</option>
+        <option value="0.3">0.3</option>
+        <option value="0.4">0.4</option>
+        <option value="0.5">0.5</option>
+        <option value="0.6">0.6</option>
+        <option value="0.7">0.7</option>
+        <option value="0.8">0.8</option>
+        <option value="0.9">0.9</option>
+        <option value="1" selected=selected >1</option>
+        </select>
+ <b id="col">No of columns:</b><select class="btn btn-warning" id="colNum" style="color:black" onchange="myCol()">
+		<option value="1" selected=selected>1</option>
+        <option value="2">2</option>
+      
+        </select>
+   <br>
+   <br> 
+<div id="layout"></div>
+<footer class="container-fluid text-center">
+  <p style=color:grey>comsa study monitoring dashboards</p>  
+  
+</footer>
+
+</body>
+</html>

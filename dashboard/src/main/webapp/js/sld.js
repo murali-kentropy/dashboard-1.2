@@ -23,7 +23,7 @@ var chart=new Chart(ctx, {
     		boxWidth:20,
     		fontSize:12
     		  },
-    		position:"left"
+    		position:"right"
     	}
     }
 });
@@ -110,8 +110,10 @@ return chart;
 function getTitle(dt)
 {
 	var variable=getVariable(dt);
+	
 	for(var i=0; i<config.length;i++)
 		{
+		
 		if(config[i].name==variable)
 			
 			return  config[i].title;
@@ -179,6 +181,7 @@ function setType(idx,type)
 	//myCharts[idx].update();
 	
 }
+
 function getTable0(idx)
 {
 	//var str="<div class='container'>";
@@ -231,12 +234,15 @@ var vals=dt.values;
 	  return values
 }
 function getValues1(dt)
-{var values=[];
+
+{
+	
+	var values=[];
 	  for(var i=0; i< dt.values.length;i++)
 		  {
 		//  if(dts[i].name!="variable")
 			  values.push(dt.values[i].value);
-		  
+		
 		  }
 	 
 	  return values
@@ -244,6 +250,7 @@ function getValues1(dt)
 
 function getVariable(dt)
 {	 
+	
 	  return dt.variable;
 }
 
@@ -424,38 +431,81 @@ var cdata={};
    
 	return cdata;
 	}
-function getDataTable(idx){
-	alert("f");
-	var str="<h5 style=\"color:blue\">"+idx+"</h5>";
-	str+="<div class=\container\">";
-	str+="<div class=\"panel-body\">";
-	str+="<div class=\"table-responsive\">";
-	str+="<table class=\"table table-bordered table-hover table-striped\">";
-	str+="<thead><tr><th style=\"text-align:center\">Mother Name</th><th style=\"text-align:center\">Phone1</th><th style=\"text-align:center\">Phone2</th></tr></thead>";
-	str+="<tbody  style=\"height:10%\">";
-	str+="</tr>";
-	str+="</tbody></table></div></div></div>";
-	str+="</center>";
+function showCal(idx,filter){
+	alert("This is calender");
 }
+function getSurveyorFilter(idx,curVal){
+	
+   var str="<select  id='surveyor_"+idx+"' name='surveyor_"+idx+"'  style='width:300px;color:black'>"
+
+   str+=	"<option value=0>---Choose surveyor-";//+surveyors[i].value;
+   for(var i=0;i<surveyors.length;i++){
+		if(curVal==surveyors[i].name)
+	str+=	"<option value='"+surveyors[i].name+"' selected>"+surveyors[i].value;
+		else
+			str+=	"<option value='"+surveyors[i].name+"'>"+surveyors[i].value;
+	}
+	str+="</select>";
+	return str;
+}
+
+
+function getPeriodFilter(idx,curVal)
+{
+	var str="<label style='font-size:15px; color:blue'> Date-From: </label><input style='background-color:white;width:80px' id='datefrom_"+idx+"' name='datefrom_"+idx+"'  type='text'  value='"+curVal[0]+"'  onchange='settoAll()' readonly>" ;
+	 str  += "<label style='font-size:15px; color:blue'> Date-To: </label><input style='background-color:white;width:80px' id='dateto_"+idx+"' name='dateto_"+idx+"'  type='text' value='"+curVal[1]+"' onchange='settoAll()' readonly>";	
+return str;
+}
+
 function getPanelButtons(idx)
 {
 	var types=config[idx].types;
+	var filter=config[idx].filters;
+	
 	var str="";
+	
 	for(var i=0;i<types.length;i++){
+		if(types[i]!='table')
 		str+="<button class='btn btn-info' onclick=setType("+idx+",'"+types[i]+"')> "+types[i]+ " chart</button >&nbsp;";
+		
 	}
-	return "<div class='panel-body'><div class='box1' ><div>"+str+"<button class='btn btn-warning'onclick=getTable("+idx+")>Data</button ></div><div id='myTable"+idx+"'></div><canvas id='myChart"+idx+"' width1='400' height='200'></canvas></div></div></div>";
+	
+	str+="<button class='btn btn-warning'id='data' onclick=getTable("+idx+")>Data</button >&nbsp";
+	
+	str+="<form name='filterform_"+idx+"' name='filterform_"+idx+"' onsubmit='survey_monitoring_dashboard.jsp'> ";
+	str+="<input type=hidden name=tabs value="+tabName+"> <input type=hidden name=dashboard value="+dashboard+"> "
+	for(var i=0;i<filter.length;i++){
+		
+		if(filter[i]=="surveyors")
+			str+="<br><label style='font-size:15px; color:blue'> Surveyors: </label>  "+getSurveyorFilter(idx,filterValues[idx].surveyor)+"";
+		else
+			if(filter[i]=="period")
+				str+="<br>"+getPeriodFilter(idx,filterValues[idx].period);//"<label style='font-size:15px; color:blue'> Date-From: </label><input style='background-color:white;width:80px' id='datefrom' name='datefrom'  type='text'  value='01/01/2018' onchange='settoAll()' readonly>" +
+						//"<label style='font-size:15px; color:blue'> Date-To: </label><input style='background-color:white;width:80px' id='dateto' name='dateto'  type='text' value='02/02/2018' onchange='settoAll()' readonly>"; 
+		/*<br><b>Filters:</b>Start :<input style='width:50px' > End: <input style='width:50px'>  Surveyor "+getSurveyorFilter(0)+"*/
+			else
+		str+="";//&nbsp; <button class='btn btn-primary' style1='margin-left:100px' onclick=showCal("+idx+",'"+filter[i]+"')> "+filter[i]+ "</button >&nbsp;";
+		
+		
+		
 }
-
+	str+="<button class='btn btn-warning' onclick='filterform_"+idx+".submit()'> Go </button >&nbsp";
+	str+="</form>";
+	
+		return "<div class='panel-body'><div class='box1' ><div>"+str+"</div><div id='myTable"+idx+"'></div><canvas id='myChart"+idx+"' width1='400' height='200'></canvas></div></div></div>";
+	
+}
+var cols=2;
 function setLayout()
 {
 	var size=data.length;
-	var cols=1;
+	
 	var tdsize=parseInt(100/cols);
 	//var tdsize=100;
-	var idx=0;
+	
 	var str="<div class='container'>";
 	 str+="<div class='row'>";
+	
 	
 	/* str+="<div class='panel panel-primary'>";
 	str+="<div class='panel-heading'>BLACK FRIDAY DEAL</div>"; */
@@ -465,13 +515,15 @@ function setLayout()
 		str+="</div>";
 			str+="</div>"; */
 	//var str="<table width=100% >";
-   str+="<table class='container' width=100% >";
+	/*str+="<div  onclick="calender();">"+filters+"</div>";*/
+   str+="<table class='container' width=800 >";
 	for(var i=0; i< size;i++)
 		{
 if(i%cols==0)
 {
 if(i>0)
 str+="</tr>"
+	
 str+="<tr>"
 
 }
@@ -488,9 +540,40 @@ str+="</td>";
 	//str+="</div>";
 	layout.innerHTML=str;
 }
+//function to display table 
+function getTableReport(idx){
+	
+	var str="<h5  align='center'>"+getTitle(data[idx])+"</h5>"
+	//var str="<div class='container'>";
+	 str+="<table class='table table-striped' width=100% >";
+	var labels=getLabels1(data[idx]);
+	var values=getValues1(data[idx]);
+	
+	//str+="<tr><th>coloums</th><th>columns2</th></tr>";
+	str+="<tr>";
+	for(var i=0;i<config[idx].columns.length;i++){
+		str+="<th>"+config[idx].columns[i]+"</th>";
+	}
+	str+="</tr>"
+	if(config[idx].hasOwnProperty('rowHeadings')){	
+	for(var i=0; i<config[idx].rowHeadings.length;i++)
+		{
+		
+		str+="<tr><td>"+config[idx].rowHeadings[i]+"</td><td>1</td><td>2</td></tr>";
+		}
+	}
+	str+="</table>"
+		
+	document.getElementById("myTable"+idx).innerHTML=str;
+	document.getElementById("myChart"+idx).style.display="none";
+	
+	document.getElementById("myTable"+idx).style.display="block";
+	document.getElementById("data").style.display="none";
+}
 function getChart(type,idx)
 {
 	
+
 if(type=="bar")
 	return getBarChart(idx);
 else
@@ -500,10 +583,24 @@ else
 		if(type=="line")
 			return getLineChart(idx);
 
-	
+		else
+			if(type=="table")
+				return getTableReport(idx);
 	else
 		
 		return getBarChart(idx);
+}
+
+function getFilters(idx)
+{
+	var filters=config[idx].filters;
+	
+	if(filters!=null)
+		{
+		return filters;
+		}
+	
+	return " No filters";
 }
 
 function getDefaultChart(idx)

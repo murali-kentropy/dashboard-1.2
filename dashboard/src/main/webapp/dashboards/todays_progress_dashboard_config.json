@@ -5,29 +5,29 @@ charts:[
         sort:{type:"int",order:"desc",field:"value"},
         types:["bar","pie"],
         name:"Household",title:"Total Household",
-        query:"select count(*) totalHouseHolds,surveyor from household where  DATE(timelog) = DATE(NOW()) group by surveyor"}
+        query:"select count(*) totalHouseHolds,surveyor from household where  DATE(timelog) = DATE(NOW()) and areaId<700 group by surveyor"}
       ,
       
          {
          sort:{type:"int",order:"desc",field:"value"},
          types:["bar","pie"],
          name:"Member",title:"Total Member",
-         query:"select count(*) totalMembers,surveyor from member where  DATE(timelog) = DATE(NOW()) group by surveyor"}
+         query:"select count(*) totalMembers,surveyor from member where  DATE(timelog) = DATE(NOW()) and  areaId<700 group by surveyor"}
       	 ,
       	 
       	 {
       	 
       	 types:["bar"],
       	 name:"Va_progress",title:"VA SL Progress",
-         query:"select count(*) va_process from feedback where DATE(timelog) = DATE(NOW())"}
+         query:"select count(*) va_process from feedback a left join death b on a.deathId=b.deathId  where DATE(a.timelog) = DATE(NOW())  and areaId<700"}
          , 
          
          {
          
-         sort:{type:"int",order:"asc",field:"value"},
+         sort:{type:"int",order:"desc",field:"value"},
         types:["bar","pie"],
-        name:"Va_interviews_with_no_symptom",title:"VA Interviews with No Symptoms(Lower the better)",
-        query:"select sum(if(instr(summary,'\\\"')=0,1,0)) va_interviews_with_no_symptom,surveyor from positiveSymptoms a left join death b on a.deathId=b.deathId where surveyor is not null and DATE(a.timelog) = DATE(NOW())  group by surveyor"}
+        name:"Va_complete_interviews",title:"VA Complete  Interviews (Higher the better)",
+        query:"select count(*) complete_interviews,a.surveyor from feedback a left join death b on a.deathId=b.deathId where areaId<700 and DATE(a.timelog)=DATE(NOW()) group by a.surveyor"}
       ,
         
         ]

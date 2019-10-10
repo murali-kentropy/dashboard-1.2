@@ -1,0 +1,36 @@
+{
+   "charts":[
+     
+      
+        {
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar"],
+        name: "resampling_by_original_surveyor",title:"Resampling By original Surveyor",
+        query:"SELECT COUNT(*) resampling_by_original_surveyor,b.assignedto   FROM resampling a LEFT JOIN death b ON a.memberId=b.deathId WHERE b.assignedto IS NOT NULL and b.areaId < 700 GROUP BY b.assignedto"}
+      ,
+      
+       {
+        sort:{type:"int",order:"asc",field:"value"},
+       types:["bar"],
+       name:"resampling_progress",title:"Resampling SL Progress",
+         query:"SELECT COUNT(*) resampling_progress   FROM resampling a LEFT JOIN death b ON a.memberId=b.deathId WHERE b.assignedto IS NOT NULL and b.areaId < 700"
+         }
+         ,
+      {
+        
+        types:["bar"],
+        name:"issues by surveyor",title:"Issues raised by surveyors",
+        filters:["surveyors"],
+        columns:["VA done by","Resample done by","Area ID","Death ID","Date of interview","Resampling date","Mismatch rate","Question  1- Match","Question 2- Match","Question 3- Match","Question 4- Match","Question 5- Match"],
+        columns2:["a","a","a","a","a"],
+        queryStruct:{
+        from:" area ",
+        fields:"00 a,00 a,00 a,00 a,0 a",
+        where :["surveyor=$surveyor_0"],
+        order1:"surveyor",
+        }
+        }
+        
+      
+   ]
+}

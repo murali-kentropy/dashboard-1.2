@@ -5,6 +5,7 @@ environments:{
 prod:{
   va: {
     uname:"rajeevkamadod";
+    
     pass:"RajeevK#2019";
     url:"jdbc:mysql://68.169.59.208/cod_save";
   },
@@ -13,7 +14,21 @@ prod:{
     uname:"rajeevkamadod";
     pass:"RajeevK#2019";
     url:"jdbc:mysql://68.169.59.208/cod_save";
+  },
+partner: {
+    uname:"root";
+    pass:"cghrjha";
+    url:"jdbc:mysql://www.cghr.org/sl_directory";
+  },
+  
+  testSurveyor: {
+    uname:"root";
+    pass:"cghrjha";
+    url:"jdbc:mysql://www.cghr.org/cod_save_sl";
   }
+  
+
+
   },
   dev:
   {

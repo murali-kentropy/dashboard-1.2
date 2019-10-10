@@ -1,0 +1,23 @@
+{
+
+charts:[
+        {
+        
+        types:["table"],
+        name:"Managers",title:"All Managers",
+        columns:["Name","Track Login","Review Comments"],
+        query:"select count(*) totalHouses  from users where role='manager'"
+        }
+      ,
+      
+         {
+        
+         types:["table"],
+         name:"Surveyors",title:"All Surveyors",
+         columns:["Name","UserName","Language Proficiency","Area Assigned"],
+         query:"select count(*) totalHouses  from users where role='user'"
+         }
+      	 
+        
+        ]
+}

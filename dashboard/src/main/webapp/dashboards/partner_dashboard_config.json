@@ -1,0 +1,18 @@
+{
+
+charts:[
+        {
+        
+       types:["table"],
+        name:"Partners",title:"All Partners",
+        filters1:["period","surveyors" ],
+        columns:["Id","Name"],
+	columns2:["id","name"],
+	datasource:"partner", 
+        query:"select * from organisation "
+        },
+
+       
+     
+        ]
+}

@@ -1,0 +1,20 @@
+{
+
+charts:[
+        {
+        
+        types:["table"],
+        name:"Areas",title:"All Areas",
+        filters:["areas"],
+        columns:["Area Name","Area ID","Pin code","District ID","Estimated number of houses"],
+        columns2:["name","areaId","pincode","districtId","estimatedNoOfHouses"],
+        queryStruct:{
+        from:" area ",
+        fields:"name,areaId,IFNULL(pincode,'-') pincode,IFNULL(districtId,'-') districtId,0 estimatedNoOfHouses",
+        where :["areaId<777","areaId=$area_0"],
+        order1:"areaId",
+        }
+        }
+      
+        ]
+}

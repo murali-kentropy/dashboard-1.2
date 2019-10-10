@@ -1,1 +1,20 @@
-{"charts":[{"avg_death_collected_per_day":"Avg deaths per day (higher the better)"},{"avg_households_per_day":"Avg Households per day (higher the better)"},{"avg_narrative_length":"Avg Narrative Length in chars (Higher the better)"},{"complete_interviews":"Complete Interviews (Higher the better)"},{"invalid_mobile_nos":"Invalid Mobile numbers"},{"total_deaths":"Total Deaths (higher the better)"},{"va_avg_time":"Avg Time(in mins) VA"},{"va_interviews_with_no_symptom":"VA Interviews with No Symptoms(Lower the better)"},{"va_progress":"VA SL Progress"}]}
+{"charts":[{"avg_death_collected_per_day":"Avg deaths per day (higher the better)"},{"avg_households_per_day":"Avg Households per day (higher the better)"},{"avg_narrative_length":"Avg Narrative Length in chars (Higher the better)"},{"complete_interviews":"Complete Interviews (Higher the better)"},{"invalid_mobile_nos":"Invalid Mobile numbers"},{"total_deaths":"Total Deaths (higher the better)"},{"va_avg_time":"Avg Time(in mins) VA"},{"va_interviews_with_no_symptom":"VA Interviews with No Symptoms(Lower the better)"},{"va_progress":"VA SL Progress"}]},
+{
+        
+        types:["table"],
+        name:"",title:"surveyor performance",
+        filters:["surveyors","areas"],
+        pageSize:100,
+        links:[{name:'narrative_review',url:'view_narrative.jsp?deathId=#deathId#',text:"Review"}],
+        columns:["Death ID","Age","Sex","Surveyor","Area","Interview Status","Start time","End time","Respondent COD","No of key symptoms recorded","Narrative & audio review"],
+        columns2:["deathId","age","sex","username","name","interview_status","starttime","timelog","res_code","len","narrative_review"],
+        queryStruct:{
+        from:"deathDetail dd left join death d on dd.deathId=d.deathId left join feedback f on dd.deathId=f.deathId left join narrative n on dd.deathId=n.deathId left join positiveSymptoms ps on dd.deathid=ps.deathId left join user u on d.assignedto=u.id left join area a on d.areaId=a.areaId",
+        fields:"dd.deathId,concat(age_value,' ',age_unit)age,sex,username,a.name,if(f.deathId is null,'Incomplete','Complete') interview_status,starttime,f.timelog,'-' res_code,JSON_LENGTH(ps.summary) len,n.summary,'-' narrative_review",
+        where :["d.assignedto=$surveyor_1","d.areaId<700","d.areaId=$area_1"],
+        order1:"dd.deathId"
+        
+        
+        }
+        },
+        

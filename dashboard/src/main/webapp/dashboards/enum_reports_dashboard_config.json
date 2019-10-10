@@ -1,0 +1,52 @@
+{
+
+charts:[
+        {
+        
+        types:["table"],
+        name:"Areas",title:"All Areas",
+        filters:["areas"],
+        columns:["Area Name","Area ID","Pin code","District ID","Estimated number of houses"],
+        columns2:["name","areaId","pincode","districtId","estimatedNoOfHouses"],
+        queryStruct:{
+        from:" area ",
+        fields:"name,areaId,IFNULL(pincode,'-') pincode,IFNULL(districtId,'-') districtId,0 estimatedNoOfHouses",
+        where :["areaId<777","areaId=$area_0"],
+        order1:"areaId",
+        }
+        }
+      ,
+      {
+        
+        types:["table"],
+        name:"House&Houseold",title:"All Houses&Households",
+        filters:["surveyors"],
+        pageSize:100,
+        columns:["Area ID","Surveyors Name","Total Houses Enumerated","Total HHs Enumerated","Total Members Enumerated","Total Death Enumerated","Total Deaths Below 70yrs","Time Taken(days)"],
+        columns2:["areaId","username","h_count","hh_count","m_count","d_count1","e_count1","timetaken"],
+        queryStruct:{
+        from:"(select count(*) h_count,areaId,surveyor from house group by areaId,surveyor) h left join (select count(*) hh_count,areaId,surveyor from household group by areaId,surveyor) hh on h.areaId=hh.areaId and h.surveyor=hh.surveyor left join (select count(*) m_count,areaId,surveyor from member group by areaId,surveyor)  m on h.areaId=m.areaId and h.surveyor=m.surveyor left join  (select count(*) d_count,areaId,surveyor from death group by areaId,surveyor) d  on h.areaId=d.areaId and h.surveyor=d.surveyor left join  (select count(*) e_count,areaId,surveyor from death where age_value<70 and age_unit='Years' group by areaId,surveyor) e on h.areaId=e.areaId and h.surveyor=e.surveyor left join (select DATEDIFF(max(timelog),min(timelog)) timetaken,areaId,surveyor from member group by areaId,surveyor) m1 on h.areaId=m1.areaId AND h.surveyor=m1.surveyor left join user u on h.surveyor=u.id",
+        fields:"h_count, IFNULL(hh_count,0) hh_count ,IFNULL(m_count,0) m_count,IFNULL(d_count,0) d_count1,IFNULL(e_count,0) e_count1 ,h.areaId areaId,username, IFNULL(h.surveyor,'-') surveyor,timetaken",
+        where :["h.areaId<777","h.surveyor=$surveyor_1","h.surveyor is not null","h.areaId is not null"],
+        order1:'h.surveyor'
+        }
+        }
+        ,
+         {
+        
+        types:["table"],
+        name:"Deaths",title:"All Deaths",
+         pageSize:100,	
+        filters:["areas","surveyors"],
+        columns:["Area ID","Surveyor Name","Head Of HouseHold Name","Deceased Name","Deceased Age","Deceased Sex","Death Year","VA Status"],
+        columns2:["areaId","username","memberName","name","age","sex","year","va_status"],
+        queryStruct:{
+        from:" household h left join death d on h.householdId=d.householdId left join deathDetail va on d.deathId=va.deathId left join member m on h.householdId=m.householdId left join user u on d.assignedto=u.id",
+        fields:"d.areaId,u.username,m.memberName memberName,d.name name,concat(d.age_value,' ',d.age_unit) age ,d.sex,IFNULL(d.year,'-') year,If(va.deathId is null , 'Pending','Complete') va_status",
+        where :["d.areaId<777","d.deathId IS NOT NULL" ,"d.assignedto is not null","m.relationToHead='Head'","d.areaId=$area_2","d.assignedto=$surveyor_2"],
+        order1:"d.areaId",
+       
+        }
+        }
+        ]
+}

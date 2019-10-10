@@ -1,0 +1,19 @@
+{
+
+charts:[
+
+        {
+        
+         types:["table"]
+        name:"Consent form tracking",title:"consent form tracking",
+        columns:["Death ID","Consent form no","Barcode Scan","Match status"],
+        columns2:["s","s","s","s"],
+        queryStruct:{
+        from:" ",
+        fields:"0 s,0 s,00 s,0 s,0 s",
+        where :[""],
+        order1:"",
+        }
+        }
+        ]
+}

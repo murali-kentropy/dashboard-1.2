@@ -1,0 +1,53 @@
+{
+
+charts:[
+        
+       {
+        
+       types:["table"],
+        name:"Surveyors",title:"All Surveyors",
+        columns:["Surveyor ID","Status","Role","User name","Email Id","Language proficiency","Date of joining the study","Last training attended"],
+	    columns2:["id","status","role","username","email_id","lang","date_of_joining","last_training_attended"],
+        queryStruct:{
+        from:"surveyor",
+        fields:"id,IFNULL(status,'-') status,IFNULL(role,'-') role,username,IFNULL(email_id,'-') email_id,lang,IFNULL(date_of_joining,'-') date_of_joining,IFNULL(last_training_attended,'-') last_training_attended",
+        where:[],
+        order1:"id",
+        },
+        
+        dimension:"nodim",
+        datasource:"partner",
+     
+       }
+       
+        ,
+        {
+        types:["table"],
+        name:"",title:"Manage Surveyor",
+        filters:["surveyors"],
+        columns:["Surveyor Name","Surveyor ID","Areas Assigned till date","Total number of field work days"],
+        columns2:["username","id","areaId","no"],
+        queryStruct:{
+        from:" (select count(distinct date(timelog)) no  , d.areaId, u.id ,u.username from user u  left join household d on u.id=d.surveyor where areaId<700  group by d.areaId,u.id with rollup) a ",
+        fields:"no,areaId,IFNULL(id,'-') id, IF(id is  null ,'All ',username) username",
+        where :["id=$surveyor_1 and id is not null","id is $null_condition_surveyor_1","areaId is not null"],
+        order1:"id",
+        }
+        }
+        ,
+        
+        {
+        types:["table"],
+        name:"",title:"Login Track",
+        filters:["surveyors"],
+        columns:["Surveyor Name","Date","Signed in time","Signed out time"],
+        columns2:["username","time","time","time"],
+        queryStruct:{
+        from:" userlog u",
+        fields:"'-'username,'-' time",
+        where :["id=$surveyor_2 and id is not null"],
+        order1:"username"
+        }
+        }
+        ]
+}

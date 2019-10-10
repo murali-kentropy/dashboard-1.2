@@ -1,0 +1,41 @@
+{
+
+charts:[
+        {
+        
+        types:["table"],
+        name:"Areas",title:"surveyor performance",
+        filters:["areas"],
+        columns:["Death Type","areaId","Enumerated","Completed"],
+        columns2:["type","areaId","enumerated","completed"],
+        pageSize:4,
+        queryStruct:{
+        from:" (select areaId,count(*) enumerated,sum(if(va.deathId is null, 0,1)) completed,'Adult' type from va_adult a left join deathDetail va on a.deathId=va.deathId  left join death d on va.deathId=d.deathId group by d.areaId union select areaId,count(*) enumerated,sum(if(va.deathId is null, 0,1)) completed,'Child' type from va_child b left join deathDetail va on b.deathId=va.deathId left join death d on va.deathId=d.deathId group by d.areaId union select areaId,count(*) enumerated,sum(if(va.deathId is null, 0,1)) completed,'Neonatal' type from va_neonate c left join deathDetail va on c.deathId=va.deathId left join death d on va.deathId=d.deathId group by d.areaId ) a",
+        fields:"*",
+        where :["areaId<700","areaId=$area_0"],
+        order1:"type"
+       
+        
+        }
+        }
+      ,
+      
+        {
+          types:["table"],
+        name:"Narrative review",title:"surveyor performance",
+        filters:["surveyors","areas","ageType"],
+        pageSize:100,
+        datasource:"partner",
+         links:[{name:'narrative_review',url:'view_narrative.jsp?deathId=#deathId#',text:"Review"}],
+        columns:["Death ID","Age","Sex","Questionnaire","Surveyor","Area","Interview Status","Start time","End time","Respondent COD","No of key symptoms recorded","Narrative & audio review","Review Date","Reviewer Name","Feedback"],
+        columns2:["deathId","age","sex","type1","surveyor_name","area_name","interview_status","starttime","endtime","rescod","len","narrative_review","review_date","reviewer_name","feedback"],
+         queryStruct:{
+        from:" selected_narrative a left join narrative_review b on a.deathId=b.deathId",
+        fields:"a.deathId,age,sex,type1,surveyor_name,area_name,interview_status,starttime,endtime,rescod,no_of_symptoms(positive_symptoms) len,'-' narrative_review,IFNULL(review_date, '') review_date,ifnull(reviewer_name,'') reviewer_name,ifnull(feedback, '') feedback",
+        where :["a.surveyor=$surveyor_1","areaId<700","areaId=$area_1","type1='$type_1'"],
+        order1:"deathId"
+        
+        }
+        }
+        ]
+}

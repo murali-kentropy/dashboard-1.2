@@ -1,0 +1,66 @@
+{
+
+charts:[
+        {
+        
+       types:["table"],
+        name:"Managers",title:"All Managers",
+        filters1:[],
+        columns:["Id","Name"],
+		columns2:["id","username"],
+
+        query:"select * from user where role='manager'"
+        }
+        ,
+        
+        {
+        
+        types:["table"],
+        name:"Managers0",title:"All Managers0",
+        filters:["period","surveyors"],
+        columns:["Name","Login track Date/time","Review  done","Issues identified","Action taken","Follow up","Status of issue","Share issues via email(to concerned person )"],
+        columns2:["username","time","review"],
+        queryStruct:{
+        from:"user a left join userlog b on a.username=b.username",
+        fields:"a.username username, b.time time,'-' review",
+        where :["a.role='manager'","'$datefrom_1' < DATE(b.time)","'$dateto_1'> DATE(b.time)"]
+        
+		}
+        }
+,
+
+{
+        
+       types:["table"],
+        name:"Managers",title:"All Managers",
+        filters:["period"],
+        columns:["Count","Area","Assigned To"],
+	columns2:["count1","name","assignedto"],
+
+     queryStruct:{
+     from:"death a left join area b on a.areaId=b.areaId",
+     fields:"count(*) count1, b.name name,assignedto",
+     where :["assignedto=$surveyor_1","assignedto","'$datefrom_1' < DATE(a.timelog)","'$dateto_1'> DATE(a.timelog)"," assignedto is not null"],
+     group:" a.areaId,assignedto"
+		}
+  }
+  
+  ,
+  {
+        
+       types:["table"],
+        name:"Managers1",title:"All Managers1",
+        filters:["surveyors","period"],
+        columns:["Count","Area","Assigned To"],
+	columns2:["count1","name","assignedto"],
+
+     queryStruct:{
+     from:"death a left join area b on a.areaId=b.areaId",
+     fields:"count(*) count1, b.name name,assignedto",
+     where :["assignedto=$surveyor_2","'$datefrom_2' < DATE(timelog)","'$dateto_2' > DATE(timelog)"," assignedto is not null"],
+     group:" a.areaId,assignedto"
+		}
+  }
+  
+        ]
+}

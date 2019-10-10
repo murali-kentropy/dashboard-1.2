@@ -1,0 +1,50 @@
+{
+   "charts":[
+     
+      
+       
+     
+      {
+         types:["table"],
+         name:"Death Details",title:"Death details",
+         colHeading:["Death","Enumeration","VA"], 
+         columns:["Death ID","Enum Surveyor Name","Enum Date","Name of the deceased","Sex of the deceased","Age of deceased","VA Surveyor name","VA date","Name of the deceased","Sex of the deceased","Age of the deceased"],
+         columns2:["s","s","s","s","s","s","s","s","s","s","s"],
+         queryStruct:{
+         from:" area ",
+         fields:"0 s,0 s,00 s,0 s,0 s,0 s,0 s,00 s,0 s,0 s,0 s",
+         where :["areaId=$area_0"],
+         order1:"areaId",
+       }
+       }
+    ,
+    {
+         types:["table"],
+         name:"BP Recording",title:"Validation of BP Recording",
+         columns:["Surveyor name","Death ID","Date of interview","BP recording at start","SYS","DYS","BP recording at end SYS","BP recording at end DYS"],
+         columns2:["s","s","s","s","s","s","s","s"],
+         queryStruct:{
+         from:" area ",
+         fields:"0 s,0 s,00 s,0 s,0 s,0 s,0 s,00 s",
+         where :["areaId=$area_0"],
+         order1:"areaId",
+       }
+       }
+       ,
+    {
+         types:["table"],
+         name:"Image capture",title:"Validation of image capture",
+         columns:["Surveyor name","Death ID","Date of interview","Death Certificate image","Health records image","Vaccination card image","GPS image"],
+         columns2:["s","s","s","s","s","s","s","s"],
+         queryStruct:{
+         from:" area ",
+         fields:"0 s,0 s,00 s,0 s,0 s,0 s,0 s,00 s",
+         where :["areaId=$area_0"],
+         order1:"areaId",
+       }
+       }
+ 
+               
+      
+   ]
+}

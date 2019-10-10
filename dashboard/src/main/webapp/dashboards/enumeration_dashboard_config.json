@@ -6,42 +6,91 @@ charts:[
        sort:{type:"int",order:"desc",field:"value"},
        types:["bar"],
        name:"Avg_households_per_day",title:"Avg Households per day (higher the better)",
-       query:"select floor(count(*) /(max(date(timelog)) -min(date(timelog)) +1)) avg_housreholds_per_day,surveyor from household group by surveyor"}
+       query:"select floor(count(*) /(max(date(timelog)) -min(date(timelog)) +1)) avg_housreholds_per_day,surveyor from household where areaId<700 group by surveyor"}
      ,
       	  
       	 {
       	 sort:{type:"int",order:"desc",field:"value"},
       	 types:["bar","pie"],
       	 name:"Houses",title:"Total Houses",
-      	 query:"select count(*) totalHouses ,surveyor from house group by surveyor"}
+      	 query:"select count(*) totalHouses ,surveyor from house where areaId<700 group by surveyor"}
       ,
       
         {
         sort:{type:"int",order:"desc",field:"value"},
         types:["bar","pie"],
         name:"Household",title:"Total Household",
-        query:"select count(*) totalHouseHolds,surveyor from household group by surveyor"}
+        query:"select count(*) totalHouseHolds,surveyor from household where areaId<700 group by surveyor"}
       ,
+      {
+        sort:{type:"int",order:"asc",field:"value"},
+        types:["bar","pie"],
+        name: "Invalid_mobile_nos",title:"Invalid Mobile numbers",
+        query:"select count(*) invalid_mobile_number,surveyor from household where contactNo='99999999' or secContactNo='99999999' and areaId<700 group by surveyor"}
+      ,
+      
       
          {
          sort:{type:"int",order:"desc",field:"value"},
          types:["bar","pie"],
          name:"Member",title:"Total Member",
-         query:"select count(*) totalMembers,surveyor from member group by surveyor"}
+         query:"select count(*) totalMembers,surveyor from member where areaId<700 group by surveyor"}
       	  
         ,
+         {         
+         sort:{type:"int",order:"desc",field:"value"},
+         types:["bar","pie"],
+         name:"Total_deaths",title:"Total Deaths (Higher the better)",
+         query:"select count(*) total_deaths,surveyor from death where areaId<700 group by surveyor order by count(*) "}
+      ,
+         {
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar"],
+         name: "Avg_death_collected_per_day",title:"Avg deaths per day (Higher the better)",
+         query:"select  floor(count(*) /(max(date(timelog)) -min(date(timelog)) +1)) avg_death_per_day ,surveyor from death where areaId<700 group by surveyor"
+       }
+     ,
         {
         sort:{type:"int",order:"desc",field:"value"},
         types:["bar","pie"],
         name:"Pregnancy",title:"Total Pregnancy",
-         query:"select count(*) totalpregnancy,surveyor from pregnancy p left join death d on p.deathId=d.deathId    group by surveyor"}
+         query:"select count(*) totalpregnancy,surveyor from pregnancy p left join death d on p.deathId=d.deathId   where areaId<700 group by surveyor"}
       	  ,
       	  {
       	  sort:{type:"int",order:"desc",field:"value"},
       	  types:["bar","pie"],
       	  name:"Birth",title:"Total Births",
-         query:"select count(*) totalbirths,surveyor from birthDetails bt left join death dt on bt.deathId=dt.deathId    group by surveyor"}
-      	  
-        	]
+         query:"select count(*) totalbirths,surveyor from birthDetails bt left join death dt on bt.deathId=dt.deathId where areaId<700 group by surveyor"},
+     {
+        sort:{type:"int",order:"desc",field:"value"},
+       types:["bar"],
+       name:"enum_progress_by_area",title:"Enumeration SL Progress By Area(households)",dimension:"area",
+         query:"select count(*) enum_progress,areaId from household  where areaId<700 group By areaId"},
+      
+
+
+ {
+        
+       types:["line"],
+       name:"enum_progress_daily",title:"Enumeration SL Progress Daily(households in last 30 days)",dimension:"30day",
+         query:"SELECT COUNT(*) enum_complete ,DATE(timelog) DATE  from household where areaId<700 group by DATE(timelog)"}
+      
+        
+      
+   ,
+
+
+
+       {
+        
+       types:["table"],
+       name:"enum_progress",title:"Enumeration SL Progress(households covered)",
+       columns:["Total Households"],
+       columns2:["total"],
+       query:"SELECT COUNT(*) total  from household where areaId<700"}
+      
+	  
+        	
+]
         	
         	}
