@@ -1,0 +1,46 @@
+{
+
+charts:[
+        
+       {
+        
+        sort:{type:"int",order:"none",field:"value"},
+        types:["table"],
+        name:"No of records",title:"Under 5 causes of death",
+        columns:["Cause of Death","Total","Male","Female"],
+	    columns2:["cause","total","no_male","no_female"],
+pageSize:"40",
+        queryStruct:{
+        from:"result_output",
+        fields:"cause,(no_male+no_female) total,no_male,no_female",
+	
+        where:[],
+        
+        },
+        datasource:"partner",
+        dimension:"nodim"
+     
+       }   ,
+
+      {
+        
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar"],
+        name:"Number of deaths",title:"Under 5 causes of death",
+        columns:["Cause of Death","Total"],
+	    columns2:["total","cause"],
+pageSize:"40",
+        queryStruct:{
+        from:"result_output",
+        fields:"(no_male+no_female) total,cause",
+	
+        where:["cause!='Total' "],
+        
+        },
+        datasource:"partner",
+        dimension:"nodim"
+     
+       }     
+        
+        ]
+}

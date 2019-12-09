@@ -1,0 +1,25 @@
+{
+
+charts:[
+        
+       {
+        
+        types:["table"],
+        name:"Area Map Phase 2",title:"All Area Maps Phase 2 List",
+        pageSize:100,
+        columns:["Sl No","District Code","District","Pop","Province","ChiefDom","Section","EA","Gid","Polygon Coordinates","Solor","Status"],
+	    columns2:["sl_no","district_code","district","pop","province","chiefdom","section","ea","gid","polygon_coordinates","color","status"],
+        queryStruct:{
+        from:"area_map_p2",
+        fields:"sl_no,district_code,district,pop,province,chiefdom,section,ea,gid,polygon_coordinates,color,status",
+        where:[]
+        
+        },
+        datasource:"partner"
+     
+       }
+       
+        
+        
+        ]
+}

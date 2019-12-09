@@ -1,0 +1,20 @@
+{
+
+charts:[
+
+        {
+        
+         types:["table"],
+         filters:["surveyors"],
+        name:"Narrative",title:"Narrative review",
+        columns:["Surveyor name","Death Id","Date of interview","Name of reviewer","Date of review","Respondent's COD","Details in the narrative","Matching status*","Quality of narrative**","Chronology of symptoms"],
+        columns2:["s","s","s","s","s","s","s","s","s","s"],
+        queryStruct:{
+        from:" area ",
+        fields:"0 s,0 s,00 s,0 s,0 s,0 s,0 s,00 s,0 s,0 s",
+        where :["surveyor=$surveyors_0"],
+        order1:"surveyor",
+        }
+        }
+        ]
+}

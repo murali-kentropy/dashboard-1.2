@@ -1,0 +1,64 @@
+{
+
+charts:[
+         {
+        
+        types:["bar"],
+        name:"issues by surveyor",title:"Issues raised by surveyors",
+        filters:["surveyors"],
+        columns:["Area Name","Area ID","Pin code","District ID","Estimated number of houses"],
+        columns2:["name","areaId","pincode","districtId","estimatedNoOfHouses"],
+        queryStruct:{
+        from:" area ",
+        fields:"name,areaId,pincode,districtId,0 estimatedNoOfHouses",
+        where :["areaId=$surveyor_0"],
+        order1:"areaId",
+        }
+        }
+        ,
+        {
+        
+        types:["bar"],
+        name:"issues opened",title:"Issues opened",
+        filters:["areas"],
+        columns:["Area Name","Area ID","Pin code","District ID","Estimated number of houses"],
+        columns2:["name","areaId","pincode","districtId","estimatedNoOfHouses"],
+        queryStruct:{
+        from:" area ",
+        fields:"name,areaId,pincode,districtId,0 estimatedNoOfHouses",
+        where :["areaId<777","areaId=$area_0"],
+        order1:"areaId",
+        }
+        }
+        ,
+        {
+        
+        types:["bar"],
+        name:"issues closed",title:"Issues closed",
+        filters:["areas"],		
+        columns:["Area Name","Area ID","Pin code","District ID","Estimated number of houses"],
+        columns2:["name","areaId","pincode","districtId","estimatedNoOfHouses"],
+        queryStruct:{
+        from:" area ",
+        fields:"name,areaId,pincode,districtId,0 estimatedNoOfHouses",
+        where :["areaId<777","areaId=$area_0"],
+        order1:"areaId",
+        }
+        }
+        ,
+        {
+        
+        types:["bar"],
+        name:"resolve issues ",title:"Time taken to solve issue",
+        filters:["areas"],
+        columns:["Area Name","Area ID","Pin code","District ID","Estimated number of houses"],
+        columns2:["name","areaId","pincode","districtId","estimatedNoOfHouses"],
+        queryStruct:{
+        from:" area ",
+        fields:"name,areaId,pincode,districtId,0 estimatedNoOfHouses",
+        where :["areaId<777","areaId=$area_0"],
+        order1:"areaId",
+        }
+        }
+       ]
+}

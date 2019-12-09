@@ -1,0 +1,34 @@
+{
+
+charts:[
+        {
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar","pie"],
+        name:"Household",title:"Total Household",
+        query:"select count(*) totalHouseHolds,surveyor from household where  DATE(timelog) = DATE(NOW()) and areaId<700 group by surveyor"}
+      ,
+      
+         {
+         sort:{type:"int",order:"desc",field:"value"},
+         types:["bar","pie"],
+         name:"Member",title:"Total Member",
+         query:"select count(*) totalMembers,surveyor from member where  DATE(timelog) = DATE(NOW()) and  areaId<700 group by surveyor"}
+      	 ,
+      	 
+      	 {
+      	 
+      	 types:["bar"],
+      	 name:"Va_progress",title:"VA SL Progress",
+         query:"select count(*) va_process from feedback a left join death b on a.deathId=b.deathId  where DATE(a.timelog) = DATE(NOW())  and areaId<700"}
+         , 
+         
+         {
+         
+         sort:{type:"int",order:"desc",field:"value"},
+        types:["bar","pie"],
+        name:"Va_complete_interviews",title:"VA Complete  Interviews (Higher the better)",
+        query:"select count(*) complete_interviews,a.surveyor from feedback a left join death b on a.deathId=b.deathId where areaId<700 and DATE(a.timelog)=DATE(NOW()) group by a.surveyor"}
+      ,
+        
+        ]
+}

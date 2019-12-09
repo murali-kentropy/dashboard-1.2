@@ -1,0 +1,21 @@
+{
+
+charts:[
+
+        
+         {
+        
+         types:["table"],
+         filters:["surveyors"],
+        name:"stock track",title:"Stock Management",
+        columns:["Surveyor name","Surveyor Id","Date","Scan laptop barcode and time out","Scan BP barcode  and time out","Scan backup battery barcode and time out ( if applicable)","Scan laptop barcode and time in","Scan BP barcode  and time in","Scan backup battery barcode and time in( if applicable)","Equipment status/ problems"],
+        columns2:["s","s","s","s","s","s","s","s","s","s"],
+        queryStruct:{
+        from:"dummy",
+        fields:"'' s,'' s,'' s,'' s,'' s,'' s,'' s,'' s,'' s,'' s",
+        where :["surveyor=$surveyors_0"]
+        },
+        datasource:"partner"
+        }
+        ]
+}

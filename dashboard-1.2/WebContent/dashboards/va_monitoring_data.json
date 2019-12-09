@@ -1,0 +1,128 @@
+{
+
+charts:[
+              	  
+      	{
+        	   variable: "va_progress",
+        	    
+        	    "Completed":2000
+        	   
+        	  },
+      	  
+          {
+        	   variable: "complete_interviews",
+        	    "sanjeev": 38,
+        	    "gobind": 48,
+        	    "amrit": 440,
+        	    "harjeet": 445,
+        	    "charanjit": 471,
+        	    "darshan": 479,
+        	    "sandeep": 508,
+        	    "sameer": 582,
+        	    "deeksha": 587,
+        	    "devinder": 603
+        	   
+        	  },
+        	  {
+        	    variable:"avg_narrative_length",
+        	    "sanjeev": 540,
+        	    "gobind": 571,
+        	    "amrit": 644,
+        	    "harjeet": 701,
+        	    "charanjit": 724,
+        	    "darshan": 783,
+        	    "sandeep": 905,
+        	    "sameer": 909,
+        	    "deeksha": 950,
+        	    "devinder": 1070
+        	    
+        	  },
+        	  {
+        	     variable:"va_interviews_with_no_symptom",
+        	    "sanjeev":
+        	     114,
+        	    "gobind": 110,
+        	    "amrit": 88,
+        	    "harjeet": 75,
+        	    "charanjit": 75,
+        	    "darshan": 63,
+        	    "sandeep": 50,
+        	    "sameer": 50,
+        	    "deeksha": 4,
+        	    "devinder": 2
+        	   
+        	    
+        	  },
+        	  {
+        	    variable:"va_avg_time",
+        	    "sanjeev": 0,
+        	    "gobind": 11,
+        	    "amrit": 12,
+        	    "harjeet": 12,
+        	    "charanjit": 13,
+        	    "darshan": 18,
+        	    "sandeep": 24,
+        	    "sameer": 27,
+        	    "deeksha": 30,
+        	    "devinder": 100
+        	  
+        	  },
+        	  {
+        	    variable:"invalid_mobile_nos",
+        	    "sanjeev": 9,
+        	    "gobind": 30,
+        	    "amrit": 31,
+        	    "harjeet": 39,
+        	    "charanjit": 43,
+        	    "darshan": 45,
+        	    "sandeep": 59,
+        	    "sameer": 84,
+        	    "deeksha": 149,
+        	    "devinder": 0
+        	    
+        	  },
+        	  {
+        	    variable:"avg_households_per_day",
+        	    "sanjeev": 31,
+        	    "gobind": 29,
+        	    "amrit": 29,
+        	    "harjeet": 28,
+        	    "charanjit": 27,
+        	    "darshan": 27,
+        	    "sandeep": 25,
+        	    "sameer": 23,
+        	    "deeksha": 21,
+        	    "devinder": 20
+        	    
+        	  },
+        	  {
+        	     variable:"total_deaths",
+        	    "sanjeev": 603,
+        	    "gobind": 587,
+        	    "amrit": 582,
+        	    "harjeet": 508,
+        	    "charanjit": 479,
+        	    "darshan": 471,
+        	    "sandeep": 445,
+        	    "sameer": 440,
+        	    "deeksha": 48,
+        	    "devinder": 38
+        	    
+        	  },
+        	  {
+        	     variable:"avg_death_collected_per_day",
+        	    "sanjeev": 6,
+        	    "gobind": 6,
+        	    "amrit": 5,
+        	    "harjeet": 5,
+        	    "charanjit": 5,
+        	    "darshan": 5,
+        	    "sandeep": 5,
+        	    "sameer": 5,
+        	    "deeksha": 5,
+        	    "devinder": 2
+        	    
+        	  }
+        	]
+
+}

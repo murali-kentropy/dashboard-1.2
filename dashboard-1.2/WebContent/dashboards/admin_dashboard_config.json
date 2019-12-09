@@ -1,0 +1,14 @@
+{
+
+charts:[
+             
+       {
+       
+       types:["bar"],
+       datadisplay:["manager","surveyor"],
+       name:"Managers",title:"All Managers",
+       query:"select u.username,ul.status,ul.time  from user u left join userlog ul on u.username=ul.username where u.role='manager'"
+     
+       }
+    ]
+  }

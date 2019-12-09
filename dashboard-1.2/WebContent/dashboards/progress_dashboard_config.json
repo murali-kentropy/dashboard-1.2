@@ -1,0 +1,21 @@
+{
+
+charts:[
+        {
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar","pie"],
+        name:"Enumerated",title:"Total Enumerated",
+        query:"select count(*) totalHouseHolds,surveyor from household where  DATE(timelog) = DATE(NOW()) group by surveyor"
+        }
+      ,
+      
+         {
+         sort:{type:"int",order:"desc",field:"value"},
+         types:["bar","pie"],
+         name:"VA",title:"Total VA Collected",
+         query:"select *  from feedback  group by surveyor"
+         }
+      	 
+        
+        ]
+}

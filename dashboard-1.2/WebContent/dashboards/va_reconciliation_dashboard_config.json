@@ -1,0 +1,50 @@
+{
+config:{
+columns:"2.0"
+},
+
+charts:[
+        {
+        
+        types:["table"],
+        name:"Unaccounted Deaths",title:"Incomplete VA not accounted for",
+        filters:["areas","surveyors"],
+        columns:["Death Id","areaName","Assigned To","Name","Address","Contact","Sec. contact"],
+        columns2:["deathId","areaName","username","details","address","contactNo","secContactNo"],
+ 	datasource:"partner",
+        pageSize:100,
+        queryStruct:{
+        from:"va_unaccounted v left join surveyor u on v.assignedto=u.id left join area ar on v.areaId=ar.areaId",
+        fields:"v.*,username,concat(v.name,' (',age_value,' ',age_unit,')') details,concat(ar.name,'') areaName",
+        where :["assignedto=$surveyor_0","v.areaId=$area_0"],
+        order1:"areaId,assignedto "
+
+       
+        
+          }
+        }
+
+      ,
+
+      
+
+        {
+          types:["table"],
+        name:"Incomplete Accounted ",title:"Incomplete VA Accounted for",
+        filters1:["areas","surveyors"],
+        pageSize:100,
+        datasource:"partner",
+        columns:["Death Id","areaName","Assigned To","Name","Reason","Address","Contact","Sec. contact"],
+        columns2:["deathId","areaName","username","details","reason","address","contactNo","secContactNo"],
+         queryStruct:{
+        from1:"va_stopped v left join death d on v.deathId=d.deathId left join surveyor u on d.assignedto=u.id left join area ar on v.areaId=ar.areaId ",
+	from:"va_accounted v left join surveyor u on v.assignedto=u.id left join area ar on v.areaId=ar.areaId",
+        fields1:"v.deathId,v.areaId,assignedto,reason,username,address,contactNo,secContactNo",
+	fields:"v.*,username,concat(v.name,' (',age_value,' ',age_unit,')') details,concat(ar.name,'') areaName",
+        where :["assignedto=$surveyor_0","v.areaId<700","v.areaId=$area_0"],
+        order1:"deathId"
+        
+          }
+        }
+        ]
+}

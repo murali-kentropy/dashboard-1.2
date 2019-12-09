@@ -1,0 +1,100 @@
+{
+   "charts":[
+ {
+       
+       types:["table"],
+       name:"Va_progress",title:"VA SL Progress",
+columns2:["total","eligible","assigned","completed"],
+columns:["va total","Eligible (< 70 years)","Assigned","Completed"],
+         query:"SELECT COUNT(*) total ,SUM(IF( a.age_value >=70 AND age_unit='Years'  ,0,1)) eligible, SUM(IF( a.assignedto IS NOT NULL,1,0)) assigned, SUM(IF(b.deathId IS NOT NULL, 1,0)) completed FROM death a LEFT JOIN deathDetail b ON a.deathId=b.deathId WHERE areaId<700"}
+    ,
+      
+{
+        
+       types:["line"],
+       name:"Va_progress_daily",title:"VA Sl Progress Daily(last 30 days)",dimension:"30day",
+         query:"SELECT COUNT(*) va_complete ,DATE(starttime) DATE  FROM death a LEFT JOIN deathDetail b ON a.deathId=b.deathId WHERE  a.assignedto IS NOT NULL AND b.deathId IS NOT NULL AND DATE(starttime) > SUBDATE(DATE(NOW()),30) and DATE(starttime) <= DATE(NOW()) GROUP BY DATE(starttime) order by DATE(starttime)"}
+      
+        
+       ,
+
+
+      
+
+{
+        sort1:{type:"int",order:"desc",field:"value"},
+       types:["bar"],
+
+       name:"Va_progress_by_area,test",title:"VA Sl  Progress By Area",dimension:"area",
+         query:"select sum(if(b.deathId is null,0,1))  va_progress,sum(if(b.deathId is not null,0,1))  va_pending,a.areaId from death a  left join deathDetail b on a.deathId=b.deathId where a.areaId<700 and assignedto is not null group By a.areaId;"}
+,      
+     
+ {
+         sort:{type:"int",order:"desc",field:"value"},
+         types:["bar","pie"],
+dimension1:"nodim",
+         name:"Complete_interviews",title:"Complete Interviews (Higher the better)",
+         query:"select count(*) complete_interviews,b.assignedto from feedback a left join death b on a.deathId=b.deathId where areaId<700 group by b.assignedto"}
+      ,
+      
+        {
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar"],
+        name: "Avg_narrative_length",title:"Avg Narrative Length in chars (Higher the better)",
+        query:"select  FLOOR(avg(length(summary))) avg_narrative_length,surveyor from narrative a left join death b on a.deathId=b.deathId where surveyor is not null and areaId<700 group by surveyor"}
+      ,
+      
+        
+      
+        
+        
+   
+       
+      {
+      sort:{type:"int",order:"asc",field:"value"},
+      types:["bar"],
+datasource:"partner",
+       name:"Va_avg_time",title:"Avg Time(in mins) VA",
+       query:"select FLOOR(avg(timestampdiff(MINUTE,b.starttime,n.timelog))) avg_time_in_min,a.surveyor from  deathDetail b left join death a on b.deathId=a.deathId left join narrative n on b.deathId=n.deathId where areaId<700 and timestampdiff(MINUTE,b.starttime,n.timelog)<300 group by a.surveyor"}
+       ,
+ {
+         sort:{type:"int",order:"asc",field:"value"},
+        types:["bar","pie"],
+ name:"Va_interviews_with_no_symptom",title:"VA Interviews with No Symptoms(Lower the better)",
+
+              query:"select sum(if(instr(summary,'\\\"')=0,1,0)) va_interviews_with_no_symptom,surveyor from positiveSymptoms a left join death b on a.deathId=b.deathId where surveyor is not null and areaId<700  group by surveyor"}
+      ,
+{
+         sort:{type:"int",order:"desc",field:"value"},
+        types:["bar","pie"],dimension:"area",
+
+        name:"deaths_by_area",title:"Deaths enumerated By area",
+        query:"SELECT COUNT(*) deaths_by_area, areaId  FROM death where areaId<700 GROUP BY areaId"}
+      ,
+ {
+         sort:{type:"int",order:"desc",field:"value"},
+        types:["bar","pie"],
+           name:"Va_interviews_assigned",title:"VA Interviews assigned ",
+        query:"SELECT COUNT(*) va_interviews_assigned,assignedto  FROM death a LEFT JOIN deathDetail b ON a.deathId=b.deathId WHERE  a.assignedto IS NOT NULL and a.areaId<700  GROUP BY assignedto"}
+      ,
+
+ 
+        {
+         sort:{type:"int",order:"asc",field:"value"},
+        types:["bar","pie"],
+           name:"Va_interviews_pending",title:"VA Interviews assigned but not Completed (Lower the better) by surveyor",
+        query:"SELECT COUNT(*) va_interviews_pending,assignedto  FROM death a LEFT JOIN deathDetail b ON a.deathId=b.deathId WHERE  a.assignedto IS NOT NULL and a.areaId<700 AND b.deathId IS NULL GROUP BY assignedto"}
+      ,
+{
+         sort:{type:"int",order:"asc",field:"value"},
+        types:["bar","pie"],dimension:"area",
+
+        name:"Va_interviews_pending_by_area",title:"VA Interviews assigned but not Completed (Lower the better) by area",
+        query:"SELECT COUNT(*) va_interviews_pending,a.areaId  FROM death a LEFT JOIN deathDetail b ON a.deathId=b.deathId WHERE  a.assignedto IS NOT NULL and a.areaId<700 AND b.deathId IS NULL GROUP BY a.areaId"}
+      
+   
+      
+
+   
+   ]
+}

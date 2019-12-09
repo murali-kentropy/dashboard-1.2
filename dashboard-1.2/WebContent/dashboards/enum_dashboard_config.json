@@ -1,0 +1,61 @@
+{
+
+charts:[
+        {
+        
+        types:["table"],
+        name:"Areas",title:"All Areas",
+        columns:["Area Name","Area ID","Pin Code","District ID","Estimated number of houses"],
+        query:"select count(*) totalHouses  from house where areaId<700 "
+        }
+      ,
+      
+         {
+        
+         types:["table"],
+         name:"Houses & Households",title:"All houses and households",
+         columns:["Area Id","Name of Surveyor","Total HHs enumerated","Total deaths enumerated","Total deaths below 70 yrs","Time taken"],
+         query:"select count(*) totalDeaths  from death where areaId<700"
+         }
+      ,
+      {
+        
+         types:["table"],
+         name:"Deaths",title:"All Deaths",
+         columns:["Area Id","Name of Surveyor","Name of head of HH","Name of deceased","Age of deceased","Sex of deceased","Year of death","VA status"],
+         query:"select count(*) totalDeaths  from death where areaId<700"
+         }
+         ,
+        {         
+         sort:{type:"int",order:"desc",field:"value"},
+         types:["bar"],
+         name:"Total_deaths",title:"Total Deaths (Higher the better)",
+         query:"select count(*) total_deaths,surveyor from death where areaId<700 group by surveyor order by count(*) "
+         
+         },
+         {         
+         sort:{type:"int",order:"desc",field:"value"},
+         types:["bar"],
+         name:"Area_Enumeration_details",title:"Total Area enumeration details",
+         query:"select count(*) total_deaths,surveyor from death where areaId<700 group by surveyor order by count(*) "
+         
+         }
+         ,
+         {         
+         sort:{type:"int",order:"desc",field:"value"},
+         types:["bar"],
+         name:"Avg_houses_and_members",title:"Average houses and members enumerated(days of absent taken into consideration-just remember)",
+         query:"select count(*) total_deaths,surveyor from death where areaId<700 group by surveyor order by count(*) "
+         
+         }
+         ,
+         {
+        
+         types:["map"],
+         name:"Area",title:"All Areas",
+         columns:["Area Id","Name of Surveyor","Name of head of HH","Name of deceased","Age of deceased","Sex of deceased","Year of death","VA status"],
+         query:"select count(*) totalDeaths  from death where areaId<700"
+         }
+     
+        ]
+}

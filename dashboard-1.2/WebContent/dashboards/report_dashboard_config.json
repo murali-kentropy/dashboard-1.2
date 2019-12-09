@@ -1,0 +1,20 @@
+{
+
+charts:[
+        {
+        
+        types:["table"],
+        name:"Progress",title:"Overall Progress",
+        filters:["areas"],
+        columns:["Area","Category","Total Enumerated","Estimated Number"],
+        columns2:["name","cat","count1","estimate"],
+        pageSize:4,
+        queryStruct:{
+        from:"  (select count(*) count1 , 'houses' cat ,0 estimate, areaId from house group by areaId union select count(*) count1, 'households' cat,0 estimate ,areaId  from household group by areaId union select count(*),'member',0 estimate, areaId from member group by areaId union select count(*) count1,'deaths' cat,0 estimate,areaId from death group by areaId) a left join area b on a.areaId=b.areaId ",
+        fields:"a.*,name",
+        where :["a.areaId='$area_0'","a.areaId<777"],
+        order1:"a.areaId"
+        }
+        }
+        ]
+        }

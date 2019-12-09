@@ -1,0 +1,27 @@
+{
+
+charts:[
+        
+       {
+        
+       types:["table"],
+        name:"Assets",title:"All Inventory List",
+        pageSize:20,
+        actions:[{name:"Add Asset", url:"assetform.jsp"}],
+        columns:["Asset NO","Type","Name","Assigned To","Serial Number","Model","Verified","Status","Location","History","Update"],
+        links:[{name:'edit',url:'assetform.jsp?asset_no=#asset_no#',text:"UPDATE"},{name:'history',url:'viewhistory.jsp?dashboard=history&tabs=history&asset_no=#asset_no#',text:"VIEW"}],
+	    columns2:["asset_no","type","name","assignedto","serial_no","model","verified","status","location","history","edit"],
+        queryStruct:{
+        from:"assets",
+        fields:"asset_no,type,name,assignedto,IFNULL(serial_no,'-') serial_no, IFNULL(model,'-') model,IFNULL(verified,'-')  verified,IFNULL(status,'-') status,IFNULL(location,'-') location,'' history,'' edit",
+        where:["type is not null"]
+        
+        },
+        datasource:"partner"
+     
+       }
+       
+        
+        
+        ]
+}

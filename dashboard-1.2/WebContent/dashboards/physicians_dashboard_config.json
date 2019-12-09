@@ -1,0 +1,24 @@
+{
+
+charts:[
+        
+       {
+        
+       types:["table"],
+        name:"Physicians",title:"All physicians",
+        columns:["Name","Username","ID","Status","Coder","Adjudicator","Batch","Languages","Mobile"],
+	    columns2:["name","username","id","status","coder","adjudicator","batch","languages","mobile"],
+        queryStruct:{
+        from:"physician",
+        fields:"name,username,id,status,coder,adjudicator,IFNULL(batch,'-') batch,languages,IFNULL(mobileno,'-') mobile",
+        where:["id is not null"],
+         order1:"id"
+        },
+        datasource:"cme",
+     
+       }
+       
+        
+        
+        ]
+}

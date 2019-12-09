@@ -1,0 +1,26 @@
+{
+
+charts:[
+        
+       {
+        
+        sort:{type:"int",order:"none",field:"value"},
+        types:["table"],
+        name:"surveyor_pos",title:"Surveyor position status",
+        columns:["Group","description","Manager","Total required","Total current","Total open"],
+	    columns2:["team_name","description","manager","no_required","no_current","open"],
+pageSize:"40",
+        queryStruct:{
+        from:"positions_surveyor",
+        fields:"team_name,description,manager,no_required,no_current,no_required-no_current open",
+	
+        where:[],
+        
+        },
+        datasource:"partner",
+        dimension:"nodim"
+     
+       }        
+        
+        ]
+}

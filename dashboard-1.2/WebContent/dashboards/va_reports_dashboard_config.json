@@ -1,0 +1,44 @@
+{
+
+charts:[
+        {
+        
+        types:["table"],
+        name:"Areas",title:"surveyor performance",
+        filters:["areas"],
+        columns:["Death Type","areaId","Enumerated","Completed"],
+        columns2:["type1","areaId","enumerated","completed"],
+        pageSize:4,
+        queryStruct:{
+        from:" (SELECT areaId,IF(dd.deathId IS NULL , 0,1) complete ,IF(d.age_unit IN('Years') AND age_value >12,'Adult' ,IF(d.age_unit IN('Years')   OR age_value ='Days','Child','Neonate')) type1 FROM death d LEFT JOIN deathDetail dd ON d.deathId=dd.deathId WHERE d.assignedto IS NOT NULL ) a ",
+        fields:"COUNT(*) enumerated ,SUM(complete) completed,type1,areaId",
+        where :["areaId<700","areaId=$area_0"],
+        order1:"type1",
+	group:"type1,areaId"
+
+
+       
+        
+        }
+        },
+{
+          types:["table"],
+        name:"Narrative review",title:"Low Quality Narratives Review",
+        filters:["surveyors","areas","ageType"],
+        pageSize:100,
+        datasource:"partner",
+         links:[{name:'narrative_review',url:'view_narrative.jsp?deathId=#deathId#',text:"Review"}],
+        columns:["Death ID","Age","Sex","Questionnaire","Surveyor","Area","Interview Status","Start time","End time","Respondent COD","No of key symptoms recorded","Narrative & audio review","Review Date","Reviewer Name","Feedback","Review Status"],
+        columns2:["deathId","age","sex","type1","surveyor_name","area_name","interview_status","starttime","endtime","rescod","len","narrative_review","review_date","reviewer_name","feedback","review_status"],
+         queryStruct:{
+        from:" selected_narrative a left join narrative_review b on a.deathId=b.deathId",
+        fields:"a.deathId,age,sex,type1,surveyor_name,area_name,interview_status,starttime,endtime,rescod,no_of_symptoms(positive_symptoms) len,'-' narrative_review,IFNULL(review_date, '') review_date,IFNULL(reviewer_name,'') reviewer_name,IFNULL(narr_fb, '-') feedback,IFNULL(review_status,'-') review_status",
+        where :["a.surveyor=$surveyor_1","areaId<700","areaId=$area_1","type1='$type_1'"],
+        order1:"deathId"
+        
+}
+}
+      
+      
+            ]
+}

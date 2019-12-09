@@ -1,0 +1,14 @@
+{
+
+charts:[
+        {
+
+        
+       types:["html"],
+        
+        html:"<img src=OrgStructure.png width=800 height=600 > "
+        }
+        
+  
+        ]
+}

@@ -1,0 +1,24 @@
+{
+
+charts:[
+        
+       {
+        
+       types:["table"],
+        name:"Asset History",title:"All Asset Data History",
+        pageSize:20,
+        columns:["Asset NO","History"],
+	    columns2:["asset_no","history"],
+        queryStruct:{
+        from:"asset_data_history",
+        fields:"asset_no,history",
+        where:[]
+        },
+        datasource:"partner",
+     
+       }
+       
+        
+        
+        ]
+}
