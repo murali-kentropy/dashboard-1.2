@@ -38,6 +38,7 @@ Object username=request.getAttribute("user");
 	//System.out.println("request.getParameter()"+request.getParameter("audioquality"));
 	fieldsObj.put("feedback", request.getParameter("feedback"));
 	fieldsObj.put("reviewer",username);
+	fieldsObj.put("supervisor_feedback",request.getParameter("supervisor_feedback"));
 	//fieldsObj.put("probing_feedback", request.getParameter("profb"));
 	JSONArray ja= new JSONArray(request.getParameter("positivesymptoms"));
 	JSONObject str=new JSONObject();

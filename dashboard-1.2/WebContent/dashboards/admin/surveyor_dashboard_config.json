@@ -1,0 +1,26 @@
+{
+
+charts:[
+        
+       {
+        
+       types:["table"],
+        name:"Surveyors",title:"All Surveyors",
+        columns:["Surveyor ID","Status","Role","User name","Email Id","Language proficiency","Date of joining the study","Last training attended"],
+	    columns2:["id","status","role","username","email_id","lang","date_of_joining","last_training_attended"],
+        queryStruct:{
+        from:"surveyor",
+        fields:"id,IFNULL(status,'-') status,IFNULL(role,'-') role,username,IFNULL(email_id,'-') email_id,lang,IFNULL(date_of_joining,'-') date_of_joining,IFNULL(last_training_attended,'-') last_training_attended",
+        where:[],
+        order1:"id",
+        },
+        
+        dimension:"nodim",
+        datasource:"partner",
+     
+       }
+       
+        
+        
+        ]
+}

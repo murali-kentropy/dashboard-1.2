@@ -1,0 +1,17 @@
+{
+
+charts:[
+        {
+        
+       types:["table"],
+        name:"Managers",title:"All Managers",
+        filters1:[],
+        columns:["Id","Name"],
+		columns2:["id","username"],
+
+        query:"select * from user where role='manager'"
+        }
+        
+  
+        ]
+}

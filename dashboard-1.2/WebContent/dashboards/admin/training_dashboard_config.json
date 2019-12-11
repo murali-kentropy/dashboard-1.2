@@ -1,0 +1,26 @@
+{
+
+charts:[
+        
+       {
+        
+       types:["table"],
+       filters:[ageType,surveyors],
+        name:"VA",title:" VA List",
+       pageSize:100,
+       links:[{name:'view',url:'view_narrative1.jsp?param=1&deathId=#deathId#',text:"View"}],
+        columns:["Death ID","Area ID","Interview Date","Age","Questionnaire","Respondent's COD","Chronology of Symptoms","Narrative & Audio"],
+	    columns2:["deathId","areaId","starttime","age","type1","rescod","summary","view"],
+        queryStruct:{
+        from:"death d left join deathDetail dd on d.deathId=dd.deathId left join positiveSymptoms ps on d.deathId=ps.deathId left join narrative n on d.deathId=n.deathId left join va_child ch on d.deathId=ch.deathId left join va_neonate ne on d.deathId=ne.deathId left join va_adult ad on d.deathId=ad.deathId left join maternal p on d.deathId=p.deathId",
+        fields:"d.deathId,d.areaId,dd.starttime,concat(age_value,' ',age_unit) age,if(ch.deathId is not null ,'child',if(ne.deathId is not null ,'neonate',if(p.deathId is not null and aPregnantDeath='yes','maternal','adult'))) type1,if(ch.deathId is not null,cCod,if(ne.deathId is not null ,respodentThinkCod,aRespCod)) rescod,ps.summary,'' view",
+        where:["dd.starttime is not null","d.assignedto='$surveyor_0'","areaId<700","if(ch.deathId is not null ,'child',if(ne.deathId is not null ,'neonate',if(p.deathId is not null and aPregnantDeath='yes','maternal','adult')))='$type_0'"]
+        ,order1:"dd.starttime"
+        }
+     
+       }
+       
+        
+        
+        ]
+}

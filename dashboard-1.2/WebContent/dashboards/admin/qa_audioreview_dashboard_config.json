@@ -1,0 +1,20 @@
+{
+
+charts:[
+
+        {
+        
+         types:["table"],
+         filters:["surveyors"],
+        name:"Narrative",title:"Narrative review",
+        columns:["Surveyor name","Death Id","Date of audio recording","Date uploaded to server","Date of Review","Review done by","Narrative confirmation with the respondent prior to submission","Matching with narrative","Feedback"],
+        columns2:["s","s","s","s","s","s","s","s","s"],
+        queryStruct:{
+        from:" area ",
+        fields:"0 s,00 s,0 s,0 s,0 s,0 s,00 s,0 s,0 s",
+        where :["surveyor=$surveyors_0"],
+        order1:"surveyor",
+        }
+        }
+        ]
+}

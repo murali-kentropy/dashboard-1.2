@@ -1,0 +1,53 @@
+{
+
+charts:[
+         {
+        
+        types:["bar"],
+        name:"issues by surveyor",title:"Issues raised by users",
+                query:"SELECT count(*) tickets,username  FROM support where time1>'2019-08-01' GROUP BY username",
+datasource:"cme",
+dimension:"nodim"
+        }
+
+       ,
+        
+
+	{
+        
+        types:["bar"],
+        name:"issues open",title:"Issues-open",
+       query:"SELECT COUNT(*) tickets,username  FROM support WHERE STATUS !='closed' and time1>'2019-08-01' GROUP BY username",
+
+            datasource:"cme",
+dimension:"nodim"
+    
+        }
+        ,
+
+        {
+        
+        types:["bar"],
+        name:"issues closed",title:"Issues closed",
+        query:"SELECT COUNT(*) tickets,username  FROM support WHERE STATUS ='closed' and time1>'2019-08-01' GROUP BY username",
+datasource:"cme",
+dimension:"nodim"
+
+        }
+        ,
+
+        {
+        
+        types:["line"],
+        name:"processed_issues ",title:"Issues processed  by date",
+query1:"SELECT  AVG(TIMESTAMPDIFF(DAY,a.time1,b.time1 )+1) average, DATE(a.time1) FROM support a LEFT JOIN support1 b ON a.id=b.id WHERE a.status !='open' GROUP BY DATE(b.time1)",
+query:"SELECT  count(*) average, DATE(b.time1) FROM support a LEFT JOIN support1 b ON a.id=b.id WHERE a.status !='open' and a.time1>'2019-08-01' GROUP BY DATE(b.time1)",
+
+datasource:"cme",
+dimension:"30day"
+
+
+               
+        }
+       ]
+}

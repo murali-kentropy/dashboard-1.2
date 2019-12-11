@@ -28,11 +28,11 @@ charts:[
         pageSize:100,
         datasource:"partner",
          links:[{name:'narrative_review',url:'view_narrative.jsp?deathId=#deathId#',text:"Review"}],
-        columns:["Death ID","Age","Sex","Questionnaire","Surveyor","Area","Interview Status","Start time","End time","Respondent COD","No of key symptoms recorded","Narrative & audio review","Review Date","Reviewer Name","Feedback","Review Status"],
-        columns2:["deathId","age","sex","type1","surveyor_name","area_name","interview_status","starttime","endtime","rescod","len","narrative_review","review_date","reviewer_name","feedback","review_status"],
+        columns:["Death ID","Age","Sex","Questionnaire","Surveyor","Area","Interview Status","Start time","End time","Respondent COD","No of key symptoms recorded","Narrative & audio review","Review Date","Reviewer Name","Feedback","Review Status","Supervisor Feedback"],
+        columns2:["deathId","age","sex","type1","surveyor_name","area_name","interview_status","starttime","endtime","rescod","len","narrative_review","review_date","reviewer_name","feedback","review_status","supervisor_feedback"],
          queryStruct:{
         from:" selected_narrative a left join narrative_review b on a.deathId=b.deathId",
-        fields:"a.deathId,age,sex,type1,surveyor_name,area_name,interview_status,starttime,endtime,rescod,no_of_symptoms(positive_symptoms) len,'-' narrative_review,IFNULL(review_date, '') review_date,IFNULL(reviewer_name,'') reviewer_name,IFNULL(narr_fb, '-') feedback,IFNULL(review_status,'-') review_status",
+        fields:"a.deathId,age,sex,type1,surveyor_name,area_name,interview_status,starttime,endtime,rescod,no_of_symptoms(positive_symptoms) len,'-' narrative_review,IFNULL(review_date, '') review_date,IFNULL(reviewer_name,'') reviewer_name,IFNULL(narr_fb, '-') feedback,IFNULL(review_status,'-') review_status,IFNULL(supervisor_feedback,'-') supervisor_feedback",
         where :["a.surveyor=$surveyor_1","areaId<700","areaId=$area_1","type1='$type_1'"],
         order1:"deathId"
         

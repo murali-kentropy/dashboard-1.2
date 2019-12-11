@@ -3,6 +3,9 @@
 <%@page import="org.json.JSONArray"%>
 <%@page import="jsonutils.DataUtil"%>
 <%@page import="java.util.*"%>
+<%@page import="org.apache.shiro.*"%>
+<%@page import="org.apache.shiro.subject.*"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -310,7 +313,17 @@ if(obj.getJSONArray("values").getJSONObject(0).has("audio_quality")){
 
 	audioquality=du.getObjectValue(obj,"audio_quality");
 }
+String supervisor_feedback="";
 System.out.println("qualityaudio----"+audioquality);
+if(obj.getJSONArray("values").getJSONObject(0).has("supervisor_feedback")){
+	supervisor_feedback=du.getObjectValue(obj,"supervisor_feedback");
+}
+%>
+
+<%
+Subject subj=SecurityUtils.getSubject();
+String user=subj.getPrincipal().toString();
+System.out.println("subj----"+subj.hasRole("reviewer"));
 %>
 
 
@@ -414,6 +427,18 @@ System.out.println("qualityaudio----"+audioquality);
  <th><label  class="form-group" for="feedback">Additional Feedback</label></th><td  style="text-align:center">
 <textarea name="feedback" id="feedback" rows="3" cols="50"   placeholder="Add details that will help the surveyor improve their work. If you think this narrative would be useful for training purposes (good and bad narratives), Please write For Training"></textarea>
 </td></tr>
+<%
+
+if(subj.hasRole("supervisor")||subj.hasRole("reviewer")||subj.hasRole("admin")){
+
+%>
+<tr>
+ <th><label  class="form-group" for="supervisorfeedback">Supervisor Feedback</label></th><td  style="text-align:center">
+<textarea name="supervisor_feedback" id="supervisor_feedback" rows="3" cols="50"   placeholder="please write feedback"></textarea>
+</td></tr>
+<%
+}
+%>
 <%-- <th><label  class="form-group" for="feedback">Feedback</label></th>
 <td> <span><b><%=narrFeedback%></b></span><br></td>
  --%>
@@ -588,8 +613,9 @@ var duration_of_interview="<%=duration_of_interview%>";
 var psObj=<%=psJ%>
 var probing=<%=probingObj%>;
 var probing_feedback="<%=probing_feedback%>";
-
 var audio_quality="<%=audioquality%>";
+
+var supervisor_feedback="<%=supervisor_feedback%>";
 
 setValue("posy",pos_sym_in_narrative);
 setValue("negsym",neg_sym_in_narrative);
@@ -632,7 +658,7 @@ for(var i=0;i<psObj.length;i++)
 //document.getElementById("missing").value=missing;
 //alert(document.getElementById("feedback"));
 document.getElementById("feedback").value=feedback;
-
+document.getElementById("supervisor_feedback").value=supervisor_feedback;
 
 //getscores(0);
 </script>

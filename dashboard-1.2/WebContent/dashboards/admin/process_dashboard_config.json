@@ -1,0 +1,37 @@
+{
+
+charts:[
+        
+       {
+        
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar"],
+        name:"No of records",title:"Overall Progress",
+        columns:["Process","Stage"],
+	    columns2:["process_count","stage"],
+        queryStruct:{
+        from:"(select count(*) process_count,getStage1(stateMachine) stage,order2(stateMachine) stage2,pid from process where stateMachineClass like '%CME%' and pid like  '01_bchs%' group by getStage1(stateMachine) with rollup ) a",
+        fields:"process_count,IFNULL(stage,'Total') stage,if(stage is null,9,stage2) stage2 ",
+        where:[],
+        order1:"stage2"
+        },
+        datasource:"cme",
+        dimension:"nodim"
+     
+       },
+        {
+        
+        
+        types:["line"],
+        name:"Completed Records",title:"Overall Progress",
+        columns:["Process","Time"],
+	    columns2:["process_count","endtime"],
+        query:"select count(*) process_count,endtime from (select pid,max(DATE(b.endtime)) endtime from process a left join tasks b on a.pid=b.member where a.status='Completed' and pid like '01_bchs%' and b.endtime is not null and b.endtime > SUBDATE(DATE(NOW()),30) group by pid) a group by DATE(endtime) order by endtime";
+        datasource:"cme",
+        dimension:"30day"
+     
+       }
+        
+        
+        ]
+}

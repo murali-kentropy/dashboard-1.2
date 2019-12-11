@@ -2,6 +2,8 @@
 
 
 var assetjson = {
+		 completeText: "Complete",
+		 completedHtml: "Asset saved !",
 		 pages: [
 		         {
 		          name: "page1",

@@ -15,10 +15,12 @@
 
 <script>
 
-
+<% 	GenerateDashboardData.confirgPath=request.getRealPath("/")+"/dashboards";
+%>
 var typeList=<%=GenerateDashboardData.getAssetType()%>;
 var assignedtoList=<%=GenerateDashboardData.getStaff()%>;
 var locationList=<%=GenerateDashboardData.getLocations()%>;
+
 </script>
 <script src="js/assetform.js"></script>
     </head>
@@ -81,7 +83,7 @@ if(asset_no!=0){
  	var model="<%=model%>";
  	var verified="<%=verified%>";
  	var status="<%=status%>";
-	<%-- var location="<%=location%>"; --%>
+	 var location1="<%=location%>"; 
  
 	survey.getQuestionByName("assignedto").value=assignedto;
 	survey.getQuestionByName("type").value=type;
@@ -90,15 +92,9 @@ if(asset_no!=0){
 	survey.getQuestionByName("model").value=model;
 	survey.getQuestionByName("verified").value=verified;
 	survey.getQuestionByName("status").value=status;
-	survey.getQuestionByName("location").value="";
+	survey.getQuestionByName("location").value=location1;
 
-	 <%-- type="<%=type%>";name="<%=name%>";serial_no="<%=serial_no%>";ano="<%=ano%>";verified="<%=verified%>";
-	 status="<%=status%>";location="<%=location%>";assignedto="<%=assignedto%>";history="<%=history%>";model="<%=model%>";
-	survey.getQuestionByName("name").value=name;survey.getQuestionByName("type").value=type;
-	survey.getQuestionByName("serial_no").value=serial_no;survey.getQuestionByName("verified").value=verified;
-	survey.getQuestionByName("location").value=location;survey.getQuestionByName("assignedto").value=assignedto;
-	survey.getQuestionByName("model").value=model;	survey.getQuestionByName("status").value=status;
- --%>
+	
 
  }
 $("#surveyContainer").Survey({

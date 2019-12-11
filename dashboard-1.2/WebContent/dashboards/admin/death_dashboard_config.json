@@ -1,0 +1,22 @@
+{
+
+charts:[
+       {
+        
+        types:["table"],
+        name:"Deaths",title:"All Deaths",
+         pageSize:100,	
+        filters:["areas","surveyors"],
+        columns:["Area ID","Surveyor Name","Head Of HouseHold Name","Deceased Name","Deceased Age","Deceased Sex","Death Year","VA Status"],
+        columns2:["areaId","username","memberName","name","age","sex","year","va_status"],
+        queryStruct:{
+        from:" household h left join death d on h.householdId=d.householdId left join deathDetail va on d.deathId=va.deathId left join member m on h.householdId=m.householdId left join user u on d.assignedto=u.id",
+        fields:"d.areaId,u.username,m.memberName memberName,d.name name,concat(d.age_value,' ',d.age_unit) age ,d.sex,IFNULL(d.year,'-') year,If(va.deathId is null , 'Pending','Complete') va_status",
+        where :["d.areaId<777","d.deathId IS NOT NULL" ,"d.assignedto is not null","m.relationToHead='Head'","d.areaId=$area_0","d.assignedto=$surveyor_0"],
+        order1:"d.areaId",
+       
+        }
+        }
+      
+        ]
+}

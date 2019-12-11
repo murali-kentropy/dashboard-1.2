@@ -1,0 +1,42 @@
+{
+   "charts":[
+     
+      
+       
+     
+      {
+         types:["table"],
+         name:"Death Details",title:"Death details",
+         pageSize:150,
+         colHeading:["Death","Enumeration","VA"], 
+         columns:["Death ID","Enum Surveyor Name","Enum Date","Name of the deceased","Sex of the deceased","Age of deceased","VA Surveyor name","VA date","Name of the deceased","Sex of the deceased","Age of the deceased"],
+         columns2:["deathId","enumSurveyor","timelog","name","sex","age","vaSurveyor","vastarttime","name2","sex","age2"],
+         queryStruct:{
+         from:" death d left join deathDetail dd on d.deathId=dd.deathId left join user u on d.assignedto=u.id left join user u1 on d.surveyor=u1.id",
+         fields:"d.deathId,Concat(u1.username,'') enumSurveyor,d.timelog,d.name,sex,concat(age_value,' ',age_unit) age,concat(dd.starttime,'') vastarttime,concat(u.username,'') vaSurveyor,concat(dd.nameFirst,' ',dd.nameSecond) name2,sex,concat(age_value,' ',age_unit) age2",
+         where :["dd.deathId is not null","d.areaId<700"]
+       }
+       }
+    
+          ,
+    {
+         types:["table"],
+         name:"Image capture",title:"Validation of image capture",
+     links:[{name:'vc_review',url:"http://barshi.vm-host.net:8080/files/#vc#",text:"<img src='linkicon_small.png'>",target:"vc"},
+{name:'hc_review',url:"http://barshi.vm-host.net:8080/files/#hc#",text:"<img src='linkicon_small.png'>",target:"hc"},
+{name:'dc_review',url:"http://barshi.vm-host.net:8080/files/#dc#",text:"<img src='linkicon_small.png'>",target:"dc"}
+],
+	pageSize:100,
+         columns:["Surveyor name","Death ID","Death Certificate image","Health records image","Vaccination card image"],
+         columns2:["assignedto","deathId","dc_review","hc_review","vc_review"],
+         queryStruct:{
+         from:"(SELECT a.deathId,d.assignedto,GROUP_CONCAT(DISTINCT category) cats,MAX(IF(category LIKE '%Health%',fileName,'')) hc ,MAX(IF(category LIKE '%Vaccine%',fileName,'')) vc,MAX(IF(category LIKE '%death%' OR category LIKE '%DC%',fileName,'')) dc FROM deathDetail a LEFT JOIN death d ON a.deathId=d.deathId LEFT JOIN filechangelog  b ON b.filename LIKE CONCAT(a.deathId,'%') WHERE areaId <700 GROUP BY deathId) a ",
+         fields:"*,concat(if(vc='','Not found',''),'') vc_review,if(hc='','Not found','') hc_review,if(dc='','Not found','') dc_review",
+         where :[ "cats IS NOT NULL",  "cats!='audio'"],
+                }
+       }
+ 
+               
+      
+   ]
+}

@@ -1,0 +1,18 @@
+{
+
+charts:[
+        {
+        
+       types:["table"],
+        name:"Collaborators",title:"All Organisations",
+        filters1:["period","surveyors" ],
+        columns:["Name","Role","Description"],
+	columns2:["name","role","description"],
+	datasource:"partner", 
+        query:"select * from organisation order by id "
+        },
+
+       
+     
+        ]
+}

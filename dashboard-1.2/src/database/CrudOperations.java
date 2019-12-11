@@ -50,7 +50,7 @@ public int updateNarrativeScore(JSONObject fieldsObj){
 		String currentTime = sdf.format(dt);
 	//System.out.println("fieldsObj---"+fieldsObj);
 		String deathId=fieldsObj.getString("deathId");
-	String query="update narrative_review set pos_sym_in_narrative=?,neg_sym_in_narrative=?,chronology=?,other_medical_info=?,enable_ICD=?,review_all_audio=?,review_date=?,reviewer_name=?,feedback=?,audio_quality=?,review_status=? where deathId="+deathId+"";
+	String query="update narrative_review set pos_sym_in_narrative=?,neg_sym_in_narrative=?,chronology=?,other_medical_info=?,enable_ICD=?,review_all_audio=?,review_date=?,reviewer_name=?,feedback=?,audio_quality=?,review_status=?,supervisor_feedback=? where deathId="+deathId+"";
 	try {
 		con = Supporting.getConnection("partner");
 		//Statement st = con.createStatement();
@@ -67,6 +67,7 @@ public int updateNarrativeScore(JSONObject fieldsObj){
 	      preparedStmt.setString(9,fieldsObj.getString("feedback"));
 	      preparedStmt.setString(10,fieldsObj.getString("audio_quality"));
 	      preparedStmt.setString(11,"Reviewed");
+	      preparedStmt.setString(12,fieldsObj.getString("supervisor_feedback"));
 	      
 	      // execute the java preparedstatement
 	   i=  preparedStmt.executeUpdate();

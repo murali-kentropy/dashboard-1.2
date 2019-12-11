@@ -9,7 +9,7 @@ charts:[
         pageSize:20,
         actions:[{name:"Add Asset", url:"assetform.jsp"}],
         columns:["Asset NO","Type","Name","Assigned To","Serial Number","Model","Verified","Status","Location","History","Update"],
-        links:[{name:'edit',url:'assetform.jsp?asset_no=#asset_no#',text:"UPDATE"},{name:'history',url:'viewhistory.jsp?dashboard=history&tabs=history&asset_no=#asset_no#',text:"VIEW"}],
+        links:[{name:'edit',url:'assetform.jsp?asset_no=#asset_no#',text:"UPDATE"},{name:'history',url:'viewhistory.jsp?dashboard=history&tabs=history&asset_no=#asset_no#',text:"HISTORY"}],
 	    columns2:["asset_no","type","name","assignedto","serial_no","model","verified","status","location","history","edit"],
         queryStruct:{
         from:"assets",

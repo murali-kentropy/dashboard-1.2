@@ -706,6 +706,7 @@ function hideAllPage(idx,total)
 	
 }
 
+
 function displayPage(pgno,idx,pageSize,noOfPages)
 {
 	hideAllPage(idx,data[idx].values.length);
@@ -751,7 +752,10 @@ function getTableReport(idx){
 	if(config[idx].pageSize!=null)
 		pageSize=config[idx].pageSize;
 	
-	var str="<h5  align='center'>"+getTitle(data[idx])+"  ("+pageSize+" rows/page )</h5>"
+	// function to display actions/links
+	var str=getActions(config[idx]);
+	
+	 str+="<h5  align='center'>"+getTitle(data[idx])+"  ("+pageSize+" rows/page )</h5>"
 	 //str+="<div class='container'>";
 	var tableId="tr_"+idx;	
 	
@@ -836,8 +840,22 @@ if(document.getElementById("data")!=null)
 	document.getElementById("data").style.display="none";
 }
 
+//function to display link on top of table
 
-
+function getActions(configObj){
+	var actions=configObj.actions;
+	
+	if(actions==null)
+		return null;
+	for(var i=0;i<actions.length;i++){
+	
+		var name=actions[i].name;
+		var url=actions[i].url;
+		if(name==null)return null;
+		else
+			 return "<a href='"+url+"' class='btn btn-info' target='"+url+"'>"+name+"</a/>";
+	}
+}
 
 function getLinks(configObj,colIdx,valueObj)
 {
@@ -877,7 +895,7 @@ if(links.target==null)
 	return "<a href='"+url+"'>"+links[i].text+"</a/>";
 
 else
-return "<a href='"+url+"' target='"+links[i].target+"'>"+links[i].text+"</a/>";
+return "<a href='"+url+"' class='btn btn-default' target='"+links[i].target+"'>"+links[i].text+"</a/>";
 }
 else
 return "";

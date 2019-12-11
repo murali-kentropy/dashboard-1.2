@@ -1,0 +1,25 @@
+{
+
+charts:[
+        
+       {
+        
+       types:["table"],
+        name:"Assets",title:"All Inventory List",
+        pageSize:20,
+        columns:["Type","Name","Assigned To","Serial Number","Verified","Status","Location"],
+	    columns2:["type","name","assignedto","serial_no","verified","status","location"],
+        queryStruct:{
+        from:"assets",
+        fields:"type,name,assignedto,IFNULL(serial_no,'-') serial_no,verified,status,location",
+        where:["type is not null"]
+        
+        },
+        datasource:"partner"
+     
+       }
+       
+        
+        
+        ]
+}

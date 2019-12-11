@@ -24,7 +24,7 @@ public class Supporting {
 	public static String vconfigFile="server_config.json";
 	
 	public void saveJson(JSONObject obj,String jsonfile){
-		File file=new File("C:/Users/INTEL/workspace/sierra_leone_dashboards/WebContent/dashboards/"+jsonfile);
+		File file=new File("C:/Users/INTEL/workspace/dashboard-1.2/WebContent/dashboards/"+jsonfile);
 		try {
 			FileWriter out=new FileWriter(file);
 
@@ -42,8 +42,9 @@ public class Supporting {
 	
 	static void loadConfig() throws JSONException, IOException
 	{
-		FileInputStream fis=new FileInputStream("C:/Users/INTEL/workspace/dashboard-1.2/WebContent/dashboards/server_config.json");
-	//FileInputStream fis=new FileInputStream(confirgPath+"/"+vconfigFile);
+
+
+	FileInputStream fis=new FileInputStream(confirgPath+"/"+vconfigFile);
 		
 		vconfig=new JSONObject(new JSONTokener(fis));
 		fis.close();

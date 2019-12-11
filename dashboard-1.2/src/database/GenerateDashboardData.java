@@ -814,6 +814,38 @@ else
 		}
 		return srArr;
 	}
+	public static JSONArray getKeys(String query,String keyFld,String datasource)
+	{
+		JSONArray srArr=new JSONArray();
+		try {
+			
+			
+			Connection con=getConnection(datasource);
+			//String query="select a.id id,username from user a left join teamuser b  on a.id=b.userId where b.userId is not null and b.teamId NOT IN (6,7) ";
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			while(rs.next()){
+				String keyVal= rs.getString(keyFld);
+				//String value= rs.getString("username");
+				//JSONObject obj=new JSONObject();
+				srArr.put(keyVal);
+				//srArr.put(obj);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new JSONArray();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return srArr;
+	}
+
 
 	
 public static void main(String[] args) throws Exception{

@@ -1,0 +1,74 @@
+{
+
+charts:[
+        
+      {
+        
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar","pie"],
+        name:"No of records",title:"Total Assigned",
+        columns:["total_coding","assignedto"],
+	    columns2:["total_coding","assignedto"],
+        query:"select count(*) total_coding,assignedto FROM cme.tasks where task like '%task0/task0' and( status is null or status=1 )and member like '01_bchs%' group by assignedto",
+        datasource:"cme",
+        dimension:"physician"
+
+     
+       },
+
+       {
+        
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar","pie"],
+        name:"No of coding records",title:"Completed coding tasks",
+        columns:["total_coding","assignedto"],
+	    columns2:["total_coding","assignedto"],
+        query:"select count(*) total_coding,assignedto FROM cme.tasks where task like '%task0/task0' and status=1 and member like '01_bchs%' group by assignedto",
+        datasource:"cme",
+        dimension:"physician"
+     
+       },
+       
+       {
+        
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar","pie"],
+        name:"No of pending coding records",title:"Pending coding tasks",
+        columns:["total_coding","assignedto"],
+	    columns2:["total_coding","assignedto"],
+        query:"select count(*) total_coding,assignedto FROM cme.tasks where task like '%task0/task0' and status is null and member like '01_bchs%' group by assignedto",
+        datasource:"cme",
+        dimension:"physician"
+     
+       },
+ {
+        
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar","pie"],
+        name:"No of pending Reconciliation records",title:"Pending Reconciliation tasks",
+        columns:["total_reconciliation","assignedto"],
+	    columns2:["total_reconciliation","assignedto"],
+        query:"select count(*) total_reconciliation,assignedto FROM cme.tasks where task like '%task0/task1' and status is null and member like '01_bchs%' group by assignedto",
+        datasource:"cme",
+        dimension:"physician"
+     
+      
+      },
+ {
+        
+        sort:{type:"int",order:"desc",field:"value"},
+        types:["bar","pie"],
+        name:"No of pending Ajudication records",title:"Pending Adjudication tasks",
+        columns:["total_adjudication","assignedto"],
+	    columns2:["total_adjudication","assignedto"],
+        query:"select count(*) total_adjudication,assignedto FROM cme.tasks where task like '%task0/task2' and status is null and member like '01_bchs%' group by assignedto",
+        datasource:"cme",
+        dimension:"physician"
+     
+       
+}
+
+       
+
+       ]
+       }

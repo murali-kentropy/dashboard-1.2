@@ -1,0 +1,39 @@
+{
+
+charts:[
+        {
+        
+        types:["table"],
+        name:"Progress",title:"Overall Progress",
+        filters:["areas"],
+        columns:["Area","Category","Total Enumerated","Estimated Number"],
+        columns2:["name","cat","count1","estimate"],
+        pageSize:4,
+        queryStruct:{
+        from:"  (select count(*) count1 , 'houses' cat ,0 estimate, areaId from house group by areaId union select count(*) count1, 'households' cat,0 estimate ,areaId  from household group by areaId union select count(*),'member',0 estimate, areaId from member group by areaId union select count(*) count1,'deaths' cat,0 estimate,areaId from death group by areaId) a left join area b on a.areaId=b.areaId ",
+        fields:"a.*,name",
+        where :["a.areaId='$area_0'","a.areaId<777"],
+        order1:"a.areaId",
+        }
+        }
+              ,
+       {
+        
+        types:["table"],
+        name:"VA Report",title:"VA Report",
+        filters:["surveyors"],
+        columns:["Surveyor Name","Death ID","Date Of Interview","Total interview time"],
+        columns2:["surveyor","deathId","starttime","total_interview_time"],
+        pageSize:100,
+        datasource:"testSurveyor",
+        queryStruct:{
+        from:"deathDetail dd left join feedback f on dd.deathId=f.deathId left join death d on dd.deathId=d.deathId",
+        fields:"concat(d.assignedto,'') surveyor,dd.deathId,dd.starttime,ifnull(timediff(f.timelog,dd.starttime),'-') total_interview_time",
+        where :["f.surveyor='$surveyor_1'","d.areaId<777"],
+        order1:"surveyor",
+        
+        }
+        }
+        
+        ]
+}

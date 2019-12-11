@@ -1,0 +1,20 @@
+{
+
+charts:[
+
+        {
+        
+         types:["table"],
+         filters:["surveyors"],
+        name:"Narrative",title:"Narrative review",
+        columns:["VA done by","Resample done by","Area ID","Death ID","Date of interview","Resampling date","Mismatch rate"],
+        columns2:["s","s","s","s","s","s","s"],
+        queryStruct:{
+        from:" area ",
+        fields:"0 s,0 s,00 s,0 s,0 s,0 s,0 s",
+        where :["surveyor=$surveyors_0"],
+        order1:"surveyor",
+        }
+        }
+        ]
+}

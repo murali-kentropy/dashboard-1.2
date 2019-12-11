@@ -1,0 +1,21 @@
+{
+
+charts:[
+       {
+        
+        types:["table"],
+        name:"House&Houseold",title:"All Houses&Households",
+        filters:["surveyors"],
+        pageSize:100,
+        columns:["Area ID","Surveyors Name","Total Houses Enumerated","Total HHs Enumerated","Total Members Enumerated","Total Death Enumerated","Total Deaths Below 70yrs","Time Taken(days)"],
+        columns2:["areaId","username","h_count","hh_count","m_count","d_count1","e_count1","timetaken"],
+        queryStruct:{
+        from:"(select count(*) h_count,areaId,surveyor from house group by areaId,surveyor) h left join (select count(*) hh_count,areaId,surveyor from household group by areaId,surveyor) hh on h.areaId=hh.areaId and h.surveyor=hh.surveyor left join (select count(*) m_count,areaId,surveyor from member group by areaId,surveyor)  m on h.areaId=m.areaId and h.surveyor=m.surveyor left join  (select count(*) d_count,areaId,surveyor from death group by areaId,surveyor) d  on h.areaId=d.areaId and h.surveyor=d.surveyor left join  (select count(*) e_count,areaId,surveyor from death where age_value<70 and age_unit='Years' group by areaId,surveyor) e on h.areaId=e.areaId and h.surveyor=e.surveyor left join (select DATEDIFF(max(timelog),min(timelog)) timetaken,areaId,surveyor from member where timelog < NOW() group by areaId,surveyor) m1 on h.areaId=m1.areaId and h.surveyor=m1.surveyor  left join user u on h.surveyor=u.id",
+        fields:"h_count, IFNULL(hh_count,0) hh_count ,IFNULL(m_count,0) m_count,IFNULL(d_count,0) d_count1,IFNULL(e_count,0) e_count1 ,h.areaId areaId,username, IFNULL(h.surveyor,'-') surveyor,timetaken",
+        where :["h.areaId<777","h.surveyor=$surveyor_0","h.surveyor is not null","h.areaId is not null","timetaken is not null"],
+        order1:'h.surveyor'
+        }
+        }
+      
+        ]
+}
