@@ -1,7 +1,4 @@
 "Package","Item","Title","csv","doc"
-"datasets","test1","Results","https://raw.githubusercontent.com/murali-kentropy/dashboard-1.2/master/test1.csv",""
-"datasets","results","data2","https://raw.githubusercontent.com/murali-kentropy/dashboard-1.2/master/results.csv",""
-"datasets","results1","data3","https://raw.githubusercontent.com/murali-kentropy/dashboard-1.2/master/results1.csv",""
 "datasets","child","Child Data","https://raw.githubusercontent.com/murali-kentropy/dashboard-1.2/master/child.csv",""
 "datasets","adult","Adult Data","https://raw.githubusercontent.com/murali-kentropy/dashboard-1.2/master/adult.csv",""
 "datasets","neonatal","Neonatal Data","https://raw.githubusercontent.com/murali-kentropy/dashboard-1.2/master/neonatal.csv",""
